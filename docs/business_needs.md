@@ -1,4 +1,4 @@
-#iFireTracker Business Requirements
+# iFireTracker Business Requirements
  
 ## Overview
 The iFireTracker project aims to develop a data product that can identify high-fire risk areas in Christchurch, New Zealand, and generate a list of locations where early fire detection sensors should be installed. These sensors will be monitored by the city council, enabling prompt response to potential fire incidents.
