@@ -5,12 +5,13 @@
 
 ### **1. Config git local repository on your own machine** 
 
-${{\color{red}\Large{\textsf{Do\ it\ using\ your\ GitHub\ credentials.\ \}}}}\$
+${{\color{red}\Large{\textsf{Do it using your GitHub credentials.}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
-git config --global user.name "- romanaumov"
-git config --global user.email "- rna104@uclive.ac.nz"
+git config --global user.name "-romanaumov"
+git config --global user.email "-rna104@uclive.ac.nz"
+- romanaumov
 ```
 
 ### **2. Initialize the local folder.** 
@@ -31,7 +32,7 @@ git branch dev
 
 ### **4. Switch to dev branch.** 
 
-${{\color{red}\Large{\textsf{Do\ it\ always\ (we\ are\ working\ with\ dev\ branch\ all\ time)\ \}}}}\$
+${{\color{red}\Large{\textsf{Do it always (we are working with dev branch all time).}}}}\$
 
 ```
 git switch dev
@@ -53,7 +54,7 @@ git clone https://github.com/UC-JARRD/iFireTracker.git
 
 ### **7. Change the code locally.** 
 
-<span style="color:red">Everyone changes only their related folder, which already exists on GitHub.</span>
+${{\color{red}\Large{\textsf{Everyone changes only their related folder, which already exists on GitHub.}}}}\$
 
 ### **8. Add changed files** 
 
@@ -71,7 +72,7 @@ git status
 
 ### **10. Make a commit** 
 
-<span style="color:red">Do it for local Git repository and write the comments what were changed!</span>
+${{\color{red}\Large{\textsf{Do it for local Git repository and write the comments what were changed!}}}}\$
 
 ```
 git commit -a -m "Comment to commit"
