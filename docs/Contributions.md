@@ -15,7 +15,7 @@ Dimitrii <https://github.com/dimitrii-ustinov>
 
 ### **Front-end**
 
-Web-server application - <span style="color:red">(Anirudh) (Roman 2nd)</span>
+Web-server application - <span style="color:red;">(Anirudh) (Roman 2nd)</span>
 
 ### **Back-End**
 
