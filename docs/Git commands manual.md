@@ -9,9 +9,8 @@ ${{\color{red}\Large{\textsf{Do it using your GitHub credentials.}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
-git config --global user.name "-romanaumov"
-git config --global user.email "-rna104@uclive.ac.nz"
-- romanaumov
+git config --global user.name ${{\color{red}\Large{\textsf{"romanaumov"}}}}\$
+git config --global user.email ${{\color{red}\Large{\textsf{"rna104@uclive.ac.nz"}}}}\$
 ```
 
 ### **2. Initialize the local folder.** 
@@ -48,8 +47,14 @@ git branch
 
 Copy the repository from GitHub to local machine. ${{\color{red}\Large{\textsf{For this use Token (classic) as a Password.\ \}}}}\$
 
+Use `clone` command if you are creating directory for first time.
 ```
 git clone https://github.com/UC-JARRD/iFireTracker.git
+```
+
+If your local directory have already exists and you need to update local files from GitHub, use the command `pull`.
+```
+git pull
 ```
 
 ### **7. Change the code locally.** 
