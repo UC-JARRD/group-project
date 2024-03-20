@@ -15,15 +15,15 @@ Dimitrii <https://github.com/dimitrii-ustinov>
 
 ### **Front-end**
 
-Web-server application - ${{\color{red}\Large{\textsf{(Anirudh) (Roman 2nd)}}}}\$
+Web-server application - ${{\color{green}\Large{\textsf{(Anirudh) (Roman 2nd)}}}}\$
 
 ### **Back-End**
 
-1. Authorization server - ${{\color{red}\Large{\textsf{(Dimitrii) (Anirudh 2nd)}}}}\$
-1. Database server - ${{\color{red}\Large{\textsf{(Ruben) (Dimitrii 2nd)}}}}\$
+1. Authorization server - ${{\color{green}\Large{\textsf{(Dimitrii) (Anirudh 2nd)}}}}\$
+1. Database server - ${{\color{green}\Large{\textsf{(Ruben) (Dimitrii 2nd)}}}}\$
 1. Application Server
-   - Model 1 (Table data) - ${{\color{red}\Large{\textsf{(Jess) (Ruben 2nd)}}}}\$
-   - Model 2 (Image data) - ${{\color{red}\Large{\textsf{(Roman) (Jess 2nd)}}}}\$
+   - Model 1 (Table data) - ${{\color{green}\Medium{\textsf{(Jess) (Ruben 2nd)}}}}\$
+   - Model 2 (Image data) - ${{\color{green}\Large{\textsf{(Roman) (Jess 2nd)}}}}\$
 
 
 ### **Description of team roles**
