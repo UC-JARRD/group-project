@@ -1,11 +1,11 @@
 ﻿# **Brief manual to use Git commands.**
 
 
-## **0. Install Git or similar software on your local machine.**
+## **0. Install Git or similar software on your local machine. Do it once (first time)**
 
-## **1. Config git local repository on your own machine** 
+## **1. Config git local repository on your own machine. Do it once (first time)** 
 
-${{\color{red}\large{\textsf{Do it using your GitHub credentials.}}}}\$
+${{\color{red}\large{\textsf{Do it using your GitHub credentials. Do it once (first time).}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
@@ -13,7 +13,7 @@ git config --global user.name "romanaumov"
 git config --global user.email "rna104@uclive.ac.nz"
 ```
 
-## **2. Initialize the local folder.** 
+## **2. Initialize the local folder. Do it once (first time)** 
 
 Do it once (first time) to create a .git folder in your directory/repository on a local machine.
 
@@ -21,29 +21,7 @@ Do it once (first time) to create a .git folder in your directory/repository on 
 git init
 ```
 
-## **3. Create a new branch** 
-
-Do it to relate with the GitHub branches (main branch by default which use to commit working code and dev branch for development and testing)
-
-```
-git branch dev
-```
-
-## **4. Switch to dev branch.** 
-
-${{\color{red}\large{\textsf{Do it always (we are working with dev branch all time).}}}}\$
-
-```
-git switch dev
-```
-
-## **5. Check where you are**
-
-```
-git branch
-```
-
-## **6. Create/Update dev branch from GitHub** 
+## **3. Create a repository from GitHub. Do it once (first time)** 
 
 Copy the repository from GitHub to local machine. ${{\color{red}\large{\textsf{For this use Token (classic) as a Password.\ \}}}}\$
 
@@ -52,14 +30,33 @@ Use `clone` command if you are creating directory for first time.
 git clone https://github.com/UC-JARRD/iFireTracker.git
 ```
 
+## **4. Update a repository from GitHub. If you have already a repository locally.** 
+
+Copy the repository from GitHub to local machine. ${{\color{red}\large{\textsf{For this use Token (classic) as a Password.\ \}}}}\$
 If your local directory have already exists and you need to update local files from GitHub, use the command `pull`.
+
 ```
 git pull
+```
+
+## **5. Switch to dev branch.** 
+
+${{\color{red}\large{\textsf{Do it always (we are working with dev branch all time).}}}}\$
+
+```
+git switch dev
+```
+
+## **6. Check where you are**
+
+```
+git branch
 ```
 
 ## **7. Change the code locally.** 
 
 ${{\color{red}\large{\textsf{Everyone changes only their related folder, which already exists on GitHub.}}}}\$
+
 
 ## **8. Add changed files** 
 
