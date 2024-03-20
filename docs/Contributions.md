@@ -2,9 +2,13 @@
 
 ## **GitHub links**
 Jess <https://github.com/jess-napper> 
+
 Anirduh <https://github.com/AnirudhRevathi>
+
 Roman <https://github.com/romanaumov>
+
 Ruben <https://github.com/RubenCastaing>
+
 Dimitrii <https://github.com/dimitrii-ustinov>
 
 ## **Front-end**
