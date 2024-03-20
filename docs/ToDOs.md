@@ -1,11 +1,10 @@
-﻿**Later we will switch these tasks into GitHub Project tasks.**
+### ﻿**Later we will switch these tasks into GitHub Project tasks.**
 
-<span style="color:red">
-**TO DO NOW!!!** **Created 13.03.2024. Need to choose the service.**
-</span>
+### **${{\color{red}\large{\textsf{TO DO NOW!!! Created 13.03.2024. Need to choose the service.}}}}\$**
 
+### **Choose the web-service deployment**
 
-**Choose the web-service deployment**, like Heroku, Railways, DigitalOcean, AWS, etc. 
+Heroku, Railways, DigitalOcean, AWS, etc. 
 
 Requirements: 
 
@@ -33,16 +32,14 @@ I believe we can start with Digital Ocean first and develop an understanding of 
 
 For now the simpler, the better:)
 
-<span style="color:red">
-**IMPORTANT! Need to do! This is similar to the Data Contract that Guilio talked about in the lecture.**
-</span>
+### **${{\color{red}\large{\textsf{IMPORTANT! Need to do! This is similar to the Data Contract that Guilio talked about in the lecture.}}}}\$**
 
 We must apply this Data Contract to each part of the system as an input/output data format as we design them each individually.
 Before developing the system we must define and coordinate (highlighted in red color in each part of the system) the inputs/outputs of every part of the system to avoid misunderstanding inside the system.
 
 
 
-**TO DO NOW!!!** **Created 13.03.2024 Done 18.03.2024**
+### **TO DO NOW!!! Created 13.03.2024 Done 18.03.2024**
 
 As for team members to participate in specified parts of a project, it should be the **primary responsibility** of some parts and **the secondary responsibility** to help other team members. 
 
@@ -52,12 +49,12 @@ So, we should define the **primary role and secondary role of the task.** Your s
 
 
 
-**TO DO NOW!!!** **Created 13.03.2024 Done 15.03.2024**
+### **TO DO NOW!!!** **Created 13.03.2024 Done 15.03.2024**
 
 Everybody must create (or have) a GitHub account and put the link here. I will create a team in GitHub and add all members.
 
 
-**Comments**
+### **Comments**
 
 Guilio also said that we should have:
 
