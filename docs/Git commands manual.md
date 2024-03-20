@@ -31,7 +31,7 @@ git branch dev
 
 ### **4. Switch to dev branch.** 
 
-<span style="color:red">Do it always (we are working with dev branch all time)</span>
+${{\color{red}\Large{\textsf{Do\ it\ always\ (we\ are\ working\ with\ dev\ branch\ all\ time)\ \}}}}\$
 
 ```
 git switch dev
@@ -45,7 +45,7 @@ git branch
 
 ### **6. Clone dev branch from GitHub** 
 
-Copy the repository from GitHub to local machine. <span style="color:red">For this use Token (classic) as a Password.</span>
+Copy the repository from GitHub to local machine. ${{\color{red}\Large{\textsf{For this use Token (classic) as a Password.\ \}}}}\$
 
 ```
 git clone https://github.com/UC-JARRD/iFireTracker.git
