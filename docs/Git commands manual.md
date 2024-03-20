@@ -5,12 +5,12 @@
 
 ### **1. Config git local repository on your own machine** 
 
-${{\color{red}\Huge{\textsf{Do\ it\ using\ your\ GitHub\ credentials.\ \}}}}\$
+${{\color{red}\Large{\textsf{Do\ it\ using\ your\ GitHub\ credentials.\ \}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
-git config --global user.name "romanaumov"
-git config --global user.email "rna104@uclive.ac.nz"
+git config --global user.name "- romanaumov"
+git config --global user.email "- rna104@uclive.ac.nz"
 ```
 
 ### **2. Initialize the local folder.** 
