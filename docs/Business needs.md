@@ -41,4 +41,7 @@ The iFireTracker project aims to develop a data product that can identify high-f
 
 ## Architecture Diagram
 
+![System architecture](https://github.com/UC-JARRD/iFireTracker/assets/108555770/83b90160-fdb6-4017-bc62-44c656e8d84b)
+
+
 Link to miro board where architecture diagram can be viewed edited <https://miro.com/app/board/uXjVNh0gze4=/>
