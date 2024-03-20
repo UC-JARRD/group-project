@@ -9,8 +9,8 @@ ${{\color{red}\Large{\textsf{Do it using your GitHub credentials.}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
-git config --global user.name ${{\color{red}\Large{\textsf{"romanaumov"}}}}\$
-git config --global user.email ${{\color{red}\Large{\textsf{"rna104@uclive.ac.nz"}}}}\$
+git config --global user.name "romanaumov"
+git config --global user.email "rna104@uclive.ac.nz"
 ```
 
 ### **2. Initialize the local folder.** 
@@ -43,7 +43,7 @@ git switch dev
 git branch
 ```
 
-### **6. Clone dev branch from GitHub** 
+### **6. Create/Update dev branch from GitHub** 
 
 Copy the repository from GitHub to local machine. ${{\color{red}\Large{\textsf{For this use Token (classic) as a Password.\ \}}}}\$
 
