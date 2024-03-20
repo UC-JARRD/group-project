@@ -16,6 +16,7 @@ git config --global user.email "rna104@uclive.ac.nz"
 ## **2. Initialize the local folder. Do it once (first time)** 
 
 Do it once (first time) to create a .git folder in your directory/repository on a local machine.
+Choose the folder on your PC and go into it using `cd` command and then execute the command `init`.
 
 ```
 git init
