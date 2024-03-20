@@ -5,7 +5,7 @@
 
 ### **1. Config git local repository on your own machine** 
 
-$${\color{red}Do it using your GitHub credentials.}$$ 
+${{\color{red}\Huge{\textsf{Do\ it\ using\ your\ GitHub\ credentials.\ \}}}}\$
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
