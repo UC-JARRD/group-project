@@ -1,5 +1,8 @@
 # Modelling Fire Risk - Research
 
+## Does it all?!
+https://fireweather.niwa.co.nz/indices - requires webscraping, but seemingly has all data required
+
 ## Models
 
 ### AI geospatial wildfire risk prediction (USA) 
@@ -23,6 +26,9 @@ https://en.wikipedia.org/wiki/2024_Port_Hills_fire
 ### Land use maps of NZ
 https://data.mfe.govt.nz/data/
 
+
+### LiDAR elevation data
+https://canterburymaps.govt.nz/help/imagery-and-elevation-data-lidar/elevation-data-lidar/
 
 ### Fire Incident Reports 
 Reports are daily, and up to 7 days previous are available, but they do not have much useful detail.
