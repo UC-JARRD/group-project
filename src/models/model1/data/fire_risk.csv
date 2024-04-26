@@ -1,40 +1,40 @@
-station_name,forest,scrub,grass
-Ward B (HV),1,3,2
-Upper Clarence (HV),2,4,2
-Glenveigh Kaikoura (HV),1,3,2
-Kaikoura Aws (MS),1,4,2
-Hanmer Forest (NW),1,3,2
-Hundalee (HV),1,3,1
-Waiau School (NW),2,4,2
-Island Hills (HV),2,3,2
-Culverden Aws (MS),1,3,2
-Cheviot (NW),1,3,1
-Medbury (NW),1,3,2
-Arthurs Pass Aws (MS),1,3,2
-Omihi (HV),1,3,2
-Greta Valley (HV),1,3,2
-Cass (HV),1,4,2
-Waipara West (NW),2,4,2
-Lees Valley (HV),1,3,2
-Ashley (HV),1,3,2
-Salt Water Creek (HV),1,3,2
-Oxford 2 (HV),1,3,2
-Cust (HV),1,3,2
-Glenaan Station B (HV),1,4,2
-Rangiora (NW),1,3,2
-Bottle Lake Forest (HV),1,3,2
-Whitecliffs (HV),1,3,2
-Forest Plains (HV),1,5,2
-West Melton (HV),1,3,2
-Christchurch Aws (MS),1,3,2
-Godley Head (HV),1,3,2
-Burnham (HV),1,4,2
-Early Valley (HV),1,3,2
-Lincoln (NW),1,4,2
-Diamond Harbour Ews (NW),1,4,2
-Te Pirita (HV),1,4,2
-Motukarara (HV),1,5,2
-Panama Road (HV),1,3,2
-Leeston (HV),1,3,2
-Te Oka (HV),1,4,2
-Southbridge (HV),1,3,2
+station_name,today_forest,today_scrub,today_grass,tomorrow_forest,tomorrow_scrub,tomorrow_grass,five_days_forest,five_days_scrub,five_days_grass
+Ward B (HV),1,3,2,1,3,2,1,3,2
+Upper Clarence (HV),2,4,2,1,3,2,1,3,2
+Glenveigh Kaikoura (HV),1,3,2,1,3,2,1,3,2
+Kaikoura Aws (MS),1,4,2,1,3,2,1,3,2
+Hanmer Forest (NW),1,3,2,1,3,2,1,3,2
+Hundalee (HV),1,3,1,1,3,2,1,3,2
+Waiau School (NW),2,4,2,1,3,2,1,3,2
+Island Hills (HV),2,3,2,1,3,2,1,3,2
+Culverden Aws (MS),1,3,2,1,3,2,1,3,2
+Cheviot (NW),1,3,1,1,3,2,1,3,2
+Medbury (NW),1,3,2,1,3,2,1,3,2
+Arthurs Pass Aws (MS),1,3,2,1,3,2,1,3,2
+Omihi (HV),1,3,2,1,3,2,1,3,2
+Greta Valley (HV),1,3,2,1,3,2,1,3,2
+Cass (HV),1,4,2,1,3,2,1,3,2
+Waipara West (NW),2,4,2,1,3,2,1,3,2
+Lees Valley (HV),1,3,2,1,3,2,1,3,2
+Ashley (HV),1,3,2,1,3,2,1,3,2
+Salt Water Creek (HV),1,3,2,1,3,2,1,3,2
+Oxford 2 (HV),1,3,2,1,3,2,1,3,2
+Cust (HV),1,3,2,1,3,2,1,3,2
+Glenaan Station B (HV),1,4,2,1,3,2,1,3,2
+Rangiora (NW),1,3,2,1,3,2,1,3,2
+Bottle Lake Forest (HV),1,3,2,1,3,2,1,3,2
+Whitecliffs (HV),1,3,2,1,3,2,1,3,2
+Forest Plains (HV),1,5,2,1,3,2,1,3,2
+West Melton (HV),1,3,2,1,3,2,1,3,2
+Christchurch Aws (MS),1,3,2,1,3,2,1,3,2
+Godley Head (HV),1,3,2,1,3,2,1,3,2
+Burnham (HV),1,4,2,1,3,2,1,3,2
+Early Valley (HV),1,3,2,1,3,2,1,3,2
+Lincoln (NW),1,4,2,1,3,2,1,3,2
+Diamond Harbour Ews (NW),1,4,2,1,3,2,1,3,2
+Te Pirita (HV),1,4,2,1,3,2,1,3,2
+Motukarara (HV),1,5,2,1,3,2,1,3,2
+Panama Road (HV),1,3,2,1,3,2,1,3,2
+Leeston (HV),1,3,2,1,3,2,1,3,2
+Te Oka (HV),1,4,2,1,3,2,1,3,2
+Southbridge (HV),1,3,2,1,3,2,1,3,2
