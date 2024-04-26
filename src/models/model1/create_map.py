@@ -1,4 +1,5 @@
 import folium
+from folium.plugins import Geocoder
 
 def create_map(land_use_data):
     # Calculate the bounds of the land use data
@@ -46,6 +47,9 @@ def create_map(land_use_data):
         </div>
     '''
     map.get_root().html.add_child(folium.Element(legend_html))
+
+    # Add a search bar to the map
+    Geocoder().add_to(map)
 
     # Save the map as an HTML file
     map.save('src/models/model1/data/maps/fire_risk_map.html')
