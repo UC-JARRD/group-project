@@ -12,6 +12,10 @@ def main():
     fire_risk_per_polygon = process_data.process_data(station_fire_risk, land_use_data)
     print('Data processed successfully.')
 
+    # Save fire_risk_per_polygon DataFrame to CSV
+    fire_risk_per_polygon.to_csv('src/models/model1/data/fire_risk_per_polygon.csv', index=False)
+    print('Data saved to "src/models/model1/data/fire_risk_per_polygon.csv" successfully.')
+
     # Create the map
     create_map.create_map(fire_risk_per_polygon)
     print('Map created successfully.')
