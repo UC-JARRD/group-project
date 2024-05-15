@@ -1,79 +1,64 @@
 import folium
 from folium.plugins import Geocoder
 from datetime import datetime, timedelta
+from shapely.wkt import loads
 
-def create_map(land_use_data):
-    # Calculate the bounds of the land use data
-    bounds = land_use_data.total_bounds
-    # Calculate the center of the bounds
-    center_lat = (bounds[1] + bounds[3]) / 2
-    center_lon = (bounds[0] + bounds[2]) / 2
-    # Create a base map centered on New Zealand
-    map = folium.Map(location=[center_lat, center_lon], zoom_start=12)
+# Constants
+CENTRE_LAT = -43.525650  # Latitude of Christchurch city
+CENTRE_LON = 172.639847  # Longitude of Christchurch city
+RISK_COLORS = {0: 'transparent', 1: 'green', 2: 'blue', 3: 'yellow', 4: 'orange', 5: 'red'}
+RISK_WORDS = {0: 'Water - No Risk', 1: 'Low', 2: 'Moderate', 3: 'High', 4: 'Very High', 5: 'Extreme'}
 
-    # Define colors for each fire risk level
-    risk_colors = {0: 'transparent', 1: 'green', 2: 'blue', 3: 'yellow', 4: 'orange', 5: 'red'}
-    # Define a dictionary to map fire risk numbers to words
-    risk_words = {0: 'Water - No Risk', 1: 'Low', 2: 'Moderate', 3: 'High', 4: 'Very High', 5: 'Extreme'}
+def add_geojson_layer(map_layer, risk_day, tooltip_text, geometry, risk_level):
+    """
+    Add GeoJson layer to the given map layer.
+    """
+    folium.GeoJson(
+        geometry,
+        style_function=lambda x, risk=risk_level: {
+            'fillColor': RISK_COLORS.get(risk, 'gray'),
+            'color': 'black',
+            'weight': 1,
+            'fillOpacity': 0.7
+        },
+        tooltip=folium.Tooltip(tooltip_text, sticky=True)
+    ).add_to(map_layer)
 
-    # Get today's date and calculate the dates for tomorrow and five days from now
-    today = datetime.now().date()
-    tomorrow = today + timedelta(days=1)
-    five_days = today + timedelta(days=5)
+def create_map(fire_risk_per_land_use_area):
+    """
+    Create a map with fire risk layers for today, tomorrow, and five days from now.
+    """
+    fire_risk_map = folium.Map(location=[CENTRE_LAT, CENTRE_LON], zoom_start=12)
 
-    # Create a LayerGroup for all layers
+    today_date = datetime.now().date()
+    tomorrow_date = today_date + timedelta(days=1)
+    five_days_date = today_date + timedelta(days=5)
+
     all_layers = folium.FeatureGroup()
 
-    # Create layer groups for each fire risk day
-    fire_risk_today_layer = folium.FeatureGroup(name=f'Fire Risk for {today}', overlay=True, control=True, show=True)
-    fire_risk_tomorrow_layer = folium.FeatureGroup(name=f'Fire Risk for {tomorrow}', overlay=True, control=True, show=False)
-    fire_risk_five_days_layer = folium.FeatureGroup(name=f'Fire Risk for {five_days}', overlay=True, control=True, show=False)
+    fire_risk_today_layer = folium.FeatureGroup(name=f'Fire Risk for {today_date}', overlay=True, control=True, show=True)
+    fire_risk_tomorrow_layer = folium.FeatureGroup(name=f'Fire Risk for {tomorrow_date}', overlay=True, control=True, show=False)
+    fire_risk_five_days_layer = folium.FeatureGroup(name=f'Fire Risk for {five_days_date}', overlay=True, control=True, show=False)
 
-    # Plot polygons on the map, colored by fire risk
-    for _, row in land_use_data.iterrows():
-        # Today's fire risk
-        risk_word_today = risk_words.get(row['fire_risk_today'], 'Unknown')
-        tooltip_text_today = f"Land Category: {row['land_type'].capitalize()}<br>Fire Risk: {risk_word_today}<br>Closest Station: {row['closest_station_name']}"
-        folium.GeoJson(
-            row.geometry,
-            style_function=lambda x, risk=row['fire_risk_today']: {
-                'fillColor': risk_colors.get(risk, 'gray'),
-                'color': 'black',
-                'weight': 1,
-                'fillOpacity': 0.7
-            },
-            tooltip=folium.Tooltip(tooltip_text_today, sticky=True)
-        ).add_to(fire_risk_today_layer)
+    fire_risk_per_land_use_area['geometry'] = fire_risk_per_land_use_area['merged_geometry'].apply(loads)
 
-        # Tomorrow's fire risk
-        risk_word_tomorrow = risk_words.get(row['fire_risk_tomorrow'], 'Unknown')
-        tooltip_text_tomorrow = f"Land Category: {row['land_type'].capitalize()}<br>Fire Risk: {risk_word_tomorrow}<br>Closest Station: {row['closest_station_name']}"
-        folium.GeoJson(
-            row.geometry,
-            style_function=lambda x, risk=row['fire_risk_tomorrow']: {
-                'fillColor': risk_colors.get(risk, 'gray'),
-                'color': 'black',
-                'weight': 1,
-                'fillOpacity': 0.7
-            },
-            tooltip=folium.Tooltip(tooltip_text_tomorrow, sticky=True)
-        ).add_to(fire_risk_tomorrow_layer)
+    for _, row in fire_risk_per_land_use_area.iterrows():
+        closest_station = row['closest_station_name']
+        land_type = row['land_type']
+        geometry = row['geometry']
 
-        # Five days' fire risk
-        risk_word_five_days = risk_words.get(row['fire_risk_five_days'], 'Unknown')
-        tooltip_text_five_days = f"Land Category: {row['land_type'].capitalize()}<br>Fire Risk: {risk_word_five_days}<br>Closest Station: {row['closest_station_name']}"
-        folium.GeoJson(
-            row.geometry,
-            style_function=lambda x, risk=row['fire_risk_five_days']: {
-                'fillColor': risk_colors.get(risk, 'gray'),
-                'color': 'black',
-                'weight': 1,
-                'fillOpacity': 0.7
-            },
-            tooltip=folium.Tooltip(tooltip_text_five_days, sticky=True)
-        ).add_to(fire_risk_five_days_layer)
-    
-    # Add a legend to the map
+        risk_word_today = RISK_WORDS.get(row['fire_risk_today'], 'Unknown')
+        tooltip_text_today = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_today}<br>Closest Station: {closest_station}"
+        add_geojson_layer(fire_risk_today_layer, row['fire_risk_today'], tooltip_text_today, geometry, row['fire_risk_today'])
+
+        risk_word_tomorrow = RISK_WORDS.get(row['fire_risk_tomorrow'], 'Unknown')
+        tooltip_text_tomorrow = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_tomorrow}<br>Closest Station: {closest_station}"
+        add_geojson_layer(fire_risk_tomorrow_layer, row['fire_risk_tomorrow'], tooltip_text_tomorrow, geometry, row['fire_risk_tomorrow'])
+
+        risk_word_five_days = RISK_WORDS.get(row['fire_risk_five_days'], 'Unknown')
+        tooltip_text_five_days = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_five_days}<br>Closest Station: {closest_station}"
+        add_geojson_layer(fire_risk_five_days_layer, row['fire_risk_five_days'], tooltip_text_five_days, geometry, row['fire_risk_five_days'])
+
     legend_html = '''
         <div style="position: fixed; bottom: 50px; left: 50px; width: 140px; height: 180px;
                     border:2px solid grey; z-index:9999; font-size:14px; background-color: white;
@@ -85,19 +70,13 @@ def create_map(land_use_data):
                     &nbsp;<i class="fa fa-square fa-2x" style="color:red"></i>&nbsp;Extreme
         </div>
     '''
-    map.get_root().html.add_child(folium.Element(legend_html))
+    fire_risk_map.get_root().html.add_child(folium.Element(legend_html))
 
-    # Add the layer groups to the main layer group
-    fire_risk_today_layer.add_to(map)
-    fire_risk_tomorrow_layer.add_to(map)
-    fire_risk_five_days_layer.add_to(map)
+    fire_risk_today_layer.add_to(fire_risk_map)
+    fire_risk_tomorrow_layer.add_to(fire_risk_map)
+    fire_risk_five_days_layer.add_to(fire_risk_map)
 
-    # Add a layer control to the map
-    folium.LayerControl(collapsed=False, position='bottomright').add_to(map)
+    folium.LayerControl(collapsed=False, position='bottomright').add_to(fire_risk_map)
+    Geocoder().add_to(fire_risk_map)
 
-    # Add a search bar to the map
-    Geocoder().add_to(map)
-
-    # Save the map as an HTML file
-    map.save('src/models/model1/data/maps/fire_risk_map.html')
-  
+    fire_risk_map.save('src/models/model1/data/maps/fire_risk_map.html')
