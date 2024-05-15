@@ -1,0 +1,5 @@
+folium==0.16.0
+geopandas==0.14.4
+mysql-connector-python
+boto3
+
