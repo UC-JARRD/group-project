@@ -1,7 +1,16 @@
+import logging
 import folium
 from folium.plugins import Geocoder
 from datetime import datetime, timedelta
 from shapely.wkt import loads
+
+# Configure logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler('src/model/logs/main_execution.log')
+handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+logger.addHandler(handler)
+
 
 # Constants
 CENTRE_LAT = -43.525650  # Latitude of Christchurch city
@@ -13,21 +22,27 @@ def add_geojson_layer(map_layer, risk_day, tooltip_text, geometry, risk_level):
     """
     Add GeoJson layer to the given map layer.
     """
-    folium.GeoJson(
-        geometry,
-        style_function=lambda x, risk=risk_level: {
-            'fillColor': RISK_COLORS.get(risk, 'gray'),
-            'color': 'black',
-            'weight': 1,
-            'fillOpacity': 0.7
-        },
-        tooltip=folium.Tooltip(tooltip_text, sticky=True)
-    ).add_to(map_layer)
+    try:
+        folium.GeoJson(
+            geometry,
+            style_function=lambda x, risk=risk_level: {
+                'fillColor': RISK_COLORS.get(risk, 'gray'),
+                'color': 'black',
+                'weight': 1,
+                'fillOpacity': 0.7
+            },
+            tooltip=folium.Tooltip(tooltip_text, sticky=True)
+        ).add_to(map_layer)
+        logging.info(f"[create_map.py] Added GeoJson layer for {tooltip_text}")
+    except Exception as e:
+        logging.error(f"[create_map.py] Failed to add GeoJson layer: {str(e)}")
+        raise
 
 def create_map(fire_risk_per_land_use_area):
     """
     Create a map with fire risk layers for today, tomorrow, and five days from now.
     """
+    logging.info("[create_map.py] Creating fire risk map...")
     fire_risk_map = folium.Map(location=[CENTRE_LAT, CENTRE_LON], zoom_start=12)
 
     today_date = datetime.now().date()
@@ -79,4 +94,6 @@ def create_map(fire_risk_per_land_use_area):
     folium.LayerControl(collapsed=False, position='bottomright').add_to(fire_risk_map)
     Geocoder().add_to(fire_risk_map)
 
-    fire_risk_map.save('src/models/model1/data/maps/fire_risk_map.html')
+    logging.info("[create_map.py] Saving fire risk map...")
+    fire_risk_map.save('src/model/data/fire_risk_map.html')
+    logging.info("[create_map.py] Fire risk map saved successfully.")
