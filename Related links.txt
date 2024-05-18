@@ -14,7 +14,3 @@ https://lite.framacalc.org/data472-2024-groups-a6fx
 4. Miro architecture
 
 https://miro.com/app/board/uXjVNh0gze4=/
-
-5. Access AWS services
-
-https://lite.framacalc.org/d417-iam-aws-a6ty

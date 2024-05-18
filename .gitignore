@@ -1,0 +1,7 @@
+
+# ignore all .mp4, .zip, .tfr files
+*.mp4
+*.avi
+*.zip
+*.gz
+*.tfr
