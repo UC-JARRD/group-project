@@ -25,9 +25,9 @@ db_connection = mysql.connector.connect(**db_config)
 cursor = db_connection.cursor()
 
 csv_file_name = 'fire_risk_per_polygon.csv'
-csv_file_path = f'../data/{csv_file_name}'
+csv_file_path = f'../model/data/input/{csv_file_name}'
 html_file_name = 'fire_risk_map.html'
-html_file_path = f'../data/maps/{html_file_name}'
+html_file_path = f'../model/data/output/html/{html_file_name}'
 
 # Get the current date and time
 system_date = datetime.datetime.now()

@@ -7,13 +7,13 @@ from shapely.geometry import Point
 def generate_land_use_areas_per_station():
 
     # Load station location data
-    weather_stations = pd.read_csv('src/models/model1/data/canterbury_weather_stations.csv') # coordinates of each station
+    weather_stations = pd.read_csv('./data/input/canterbury_weather_stations.csv') # coordinates of each station
     # Convert weather station coordinates to GeoDataFrame
     geometry = [Point(xy) for xy in zip(weather_stations['longitude'], weather_stations['latitude'])]
     weather_stations = gpd.GeoDataFrame(weather_stations, geometry=geometry)
 
     # Load LUCAS NZ land use map data (shapefile)
-    land_use_data = gpd.read_file('src/models/model1/data/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx') # Can reduce row numbers using e.g. rows=1000
+    land_use_data = gpd.read_file('./data/input/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx') # Can reduce row numbers using e.g. rows=1000
     # Set the coordinate system
     land_use_data = land_use_data.to_crs("EPSG:4326")
     # Drop unnecessary columns
@@ -58,8 +58,8 @@ def generate_land_use_areas_per_station():
     # Get the name of the closest station for each polygon
     merged_geometries['closest_station_name'] = land_use_data['closest_station'].apply(lambda x: weather_stations.loc[x, 'station_name'])
 
-    merged_geometries.to_csv('src/models/model1/data/land_use_areas_per_station.csv', index=False)
-    print('Data saved to "src/models/model1/data/land_use_areas_per_station.csv" successfully.')
+    merged_geometries.to_csv('./data/input/merged/land_use_areas_per_station.csv', index=False)
+    print('Data saved to "./data/input/merged/land_use_areas_per_station.csv" successfully.')
 
     return merged_geometries
 

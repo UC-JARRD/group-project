@@ -4,7 +4,7 @@ import process_data
 import create_map
 
 # Configure logging
-logging.basicConfig(filename='src/model/logs/main_execution.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='./logs/main_execution.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def main():
@@ -25,9 +25,9 @@ def main():
 
         # Save fire_risk_per_polygon DataFrame to CSV
         logging.info("Saving data...")
-        fire_risk_per_land_use_area.to_csv('src/model/data/fire_risk_per_land_use_area.csv', index=False)
-        logging.info('Data saved to "src/model/data/fire_risk_per_land_use_area.csv" successfully.')
-        print('Data saved to "src/model/data/fire_risk_per_land_use_area.csv" successfully.')
+        fire_risk_per_land_use_area.to_csv('./data/output/csv/fire_risk_per_land_use_area.csv', index=False)
+        logging.info('Data saved to "./data/output/csv/fire_risk_per_land_use_area.csv" successfully.')
+        print('Data saved to "./data/output/csv/fire_risk_per_land_use_area.csv" successfully.')
 
         # Create the map
         logging.info("Creating map...")

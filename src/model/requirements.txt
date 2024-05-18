@@ -1,6 +1,0 @@
-geopandas==0.14.3
-pandas==1.4.0
-numpy==1.21.0
-datetime
-logging
-shapely.geometry

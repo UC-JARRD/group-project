@@ -7,7 +7,7 @@ from shapely.wkt import loads
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('src/model/logs/main_execution.log')
+handler = logging.FileHandler('./logs/main_execution.log')
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 
@@ -95,5 +95,5 @@ def create_map(fire_risk_per_land_use_area):
     Geocoder().add_to(fire_risk_map)
 
     logging.info("[create_map.py] Saving fire risk map...")
-    fire_risk_map.save('src/model/data/fire_risk_map.html')
+    fire_risk_map.save('./data/output/html/fire_risk_map.html')
     logging.info("[create_map.py] Fire risk map saved successfully.")
