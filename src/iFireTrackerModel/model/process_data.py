@@ -6,7 +6,7 @@ from shapely.geometry import Point
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('./logs/main_execution.log')
+handler = logging.FileHandler('src/iFireTrackerModel/model/logs/main_execution.log')
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 

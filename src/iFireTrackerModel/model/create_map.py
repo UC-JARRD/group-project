@@ -1,13 +1,15 @@
+import time
 import logging
 import folium
 from folium.plugins import Geocoder
 from datetime import datetime, timedelta
 from shapely.wkt import loads
 
+
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('./logs/main_execution.log')
+handler = logging.FileHandler('src/iFireTrackerModel/model/logs/main_execution.log')
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 
@@ -48,8 +50,6 @@ def create_map(fire_risk_per_land_use_area):
     today_date = datetime.now().date()
     tomorrow_date = today_date + timedelta(days=1)
     five_days_date = today_date + timedelta(days=5)
-
-    all_layers = folium.FeatureGroup()
 
     fire_risk_today_layer = folium.FeatureGroup(name=f'Fire Risk for {today_date}', overlay=True, control=True, show=True)
     fire_risk_tomorrow_layer = folium.FeatureGroup(name=f'Fire Risk for {tomorrow_date}', overlay=True, control=True, show=False)
@@ -95,5 +95,6 @@ def create_map(fire_risk_per_land_use_area):
     Geocoder().add_to(fire_risk_map)
 
     logging.info("[create_map.py] Saving fire risk map...")
-    fire_risk_map.save('./data/output/html/fire_risk_map.html')
+    fire_risk_map.save('src/iFireTrackerModel/model/data/output/html/fire_risk_map.html')
     logging.info("[create_map.py] Fire risk map saved successfully.")
+
