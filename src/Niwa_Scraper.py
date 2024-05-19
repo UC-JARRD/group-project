@@ -103,7 +103,7 @@ for offset, suffix in zip([-172 * 2, -172, 172 *3], ['today', 'tomorrow', 'five_
             combined_df = pd.merge(combined_df, df, on='station_name')
 
 # Save to a CSV
-combined_df.to_csv('Niwa_data_as_CSVs/Firedata.csv', index=False)
+combined_df.to_csv('Firedata.csv', index=False)
 
 # Display the combined DataFrame
 print(combined_df)
