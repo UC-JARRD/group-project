@@ -1,9 +1,13 @@
-from flask import Flask, request, session, redirect, url_for
+from flask import Flask, jsonify, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
+import datetime, timezone, timedelta
+
 
 app = Flask(__name__)
 app.secret_key = 'DATA472-JARRD-ifiretracker'
+JWT_SECRET = "your_jwt_secret_key"
+JWT_ALGORITHM = "HS256"
 
 @app.route("/")
 def hello_world():
@@ -86,11 +90,23 @@ def login():
         db_connection.close()
 
         if user and check_password_hash(user[1], password):
-            # Set session
-            session['user'] = login
-            return "Login successful!"
+            # Generate JWT token
+            token = jwt.encode({
+                'user': login,
+                'exp': datetime.now(timezone.utc) + datetime.timedelta(hours=24)
+            }, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+            return jsonify({'token': token})
+
         else:
             return "Invalid login or password", 401
+
+        # if user and check_password_hash(user[1], password):
+        #     # Set session
+        #     session['user'] = login
+        #     return "Login successful!"
+        # else:
+        #     return "Invalid login or password", 401
 
     except mysql.connector.Error as err:
             return f"Error: {err}", 500
