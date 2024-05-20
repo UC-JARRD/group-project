@@ -43,6 +43,12 @@ def register():
 # Create cursor
         cursor = db_connection.cursor()
 
+        # Check if the user already exists
+        cursor.execute("SELECT COUNT(*) FROM users WHERE login = %s", (login,))
+        user_count = cursor.fetchone()[0]
+        if user_count > 0:
+            return "User already exists in the database."
+
         # Insert user data into the database
         sql = "INSERT INTO users (name, login, pass, email) VALUES (%s, %s, %s, %s)"
         val = (name, login, hashed_password, email)
@@ -89,24 +95,24 @@ def login():
         cursor.close()
         db_connection.close()
 
-        if user and check_password_hash(user[1], password):
-            # Generate JWT token
-            token = jwt.encode({
-                'user': login,
-                'exp': datetime.now(timezone.utc) + datetime.timedelta(hours=24)
-            }, JWT_SECRET, algorithm=JWT_ALGORITHM)
-
-            return jsonify({'token': token})
-
-        else:
-            return "Invalid login or password", 401
-
         # if user and check_password_hash(user[1], password):
-        #     # Set session
-        #     session['user'] = login
-        #     return "Login successful!"
-        # else:
-        #     return "Invalid login or password", 401
+        #     # Generate JWT token
+        #     token = jwt.encode({
+        #         'user': login,
+        #         'exp': datetime.now(timezone.utc) + datetime.timedelta(hours=24)
+        #     }, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+        #     return jsonify({'token': token})
+
+        #else:
+         #    return "Invalid login or password", 401
+
+        if user and check_password_hash(user[1], password):
+             # Set session
+             session['user'] = login
+             return "Login successful!"
+        else:
+             return "Invalid login or password", 401
 
     except mysql.connector.Error as err:
             return f"Error: {err}", 500
