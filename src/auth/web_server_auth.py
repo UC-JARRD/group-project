@@ -26,11 +26,11 @@ def registration():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        login = request.form['username']
+        login = request.form['login']
         password = request.form['password']
 
         # Form the API request to the authorization server
-        response = requests.post(f'{AUTH_SERVER_URL}/login', json={'username': login, 'password': password})
+        response = requests.post(f'{AUTH_SERVER_URL}/login', json={'login': login, 'password': password})
 
         if response.status_code == 200 or response.status_code == 201:
             return redirect(url_for('dashboard'))
