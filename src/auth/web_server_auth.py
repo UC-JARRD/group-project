@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-AUTH_SERVER_URL = 'http://13.239.55.4:5000'
+AUTH_SERVER_URL = 'http://13.239.55.4:8000'
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
@@ -16,7 +16,7 @@ def registration():
         # Form the API request to the authorization server
         response = requests.post(f'{AUTH_SERVER_URL}/register', data={'name': name,'login': login,'email': email,'password': password})
 
-        if response.status_code == 201:
+        if response.status_code == 200 or response.status_code == 201:
             return redirect(url_for('login'))
         else:
             return 'Registration failed', response.status_code
@@ -32,7 +32,7 @@ def login():
         # Form the API request to the authorization server
         response = requests.post(f'{AUTH_SERVER_URL}/login', json={'username': login, 'password': password})
 
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 201:
             return redirect(url_for('dashboard'))
         else:
             return 'Login failed', response.status_code

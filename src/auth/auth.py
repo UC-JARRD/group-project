@@ -68,8 +68,9 @@ def register():
 @app.route("/login", methods=["POST"])
 def login():
     # Get data from POST request
-    login = request.form.get('login')
-    password = request.form.get('password')
+    data = request.get_json()
+    login = data.get('login')
+    password = data.get('password')
 
     if not login or not password:
         return "Missing login or password", 400
