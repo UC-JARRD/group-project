@@ -1,10 +1,10 @@
 import requests
 
 # Set the API endpoint URL
-url = 'http://13.211.167.106/upload?format=html'
+url = 'http://54.66.144.170/upload?format=html'
 
 # Set the path to the CSV file you want to send
-html_path = '../model/output/html/fire_risk_map.html'
+html_path = '../../model/data/output/html/fire_risk_map.html'
 
 # Open the CSV file in binary mode
 with open(html_path, 'rb') as html_file:
