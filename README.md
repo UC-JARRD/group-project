@@ -2,13 +2,14 @@
 
 ## Contributors
 
-1. Jess - developer of the model
-2. Anirudh - developer of the website
-3. Roman - creation of EC2s, DB and tables in it, S3 and integration via api ModelServer, WebServer, S3 and RDS together
-4. Ruben - developer of the scrapper
-5. Dimitrii - developer of the authorization part, integration Auth and Web servers.
+1. **Jess** - developer of the model
+2. **Anirudh** - developer of the website
+3. **Roman** - creation of EC2s, DB and tables in it, S3 and integration via api ModelServer, WebServer, S3 and RDS together
+4. **Ruben** - developer of the scrapper
+5. **Dimitrii** - developer of the authorization part, integration Auth and Web servers.
 
 All of contributors participated in continuous generation and improvement of the idea of the project, develop documentation etc.
+
 
 ## Presentation
 
@@ -29,6 +30,7 @@ The pipeline how to deploy overall system into Amazon Cloud (AWS) was described 
 The overall architecture of our system you can see in the presentation ("Presentation" folder) and below as well
 
 ![Architecture](./src/iFireTrackerWeb/images_for_readme/architecture.png)
+
 
 ## Communication
 
