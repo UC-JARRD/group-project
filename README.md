@@ -1,14 +1,12 @@
 # `Fire Predictions in Christchurch` Group Project for DATA472 course at the University of Canterbury
 
-## Contributors
+## Contributors of the JARRD team
 
-1. **Jess** - developer of the model
-2. **Anirudh** - developer of the website
-3. **Roman** - creation of EC2s, DB and tables in it, S3 and integration via api ModelServer, WebServer, S3 and RDS together
-4. **Ruben** - developer of the scrapper
-5. **Dimitrii** - developer of the authorization part, integration Auth and Web servers.
-
-All of contributors participated in continuous generation and improvement of the idea of the project, develop documentation etc.
+1. **Jess Napper**
+2. **Anirudh Revathi**
+3. **Roman Naumov**
+4. **Ruben Castaing**
+5. **Dimitrii Ustinov**
 
 
 ## Presentation
