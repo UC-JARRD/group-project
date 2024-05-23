@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("{{ url_for('static', filename='images/background.jpg') }}");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+#logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.2em; /* Increase the font size */
+}
+
+#logout:hover {
+  background-color: #45a049;
+}
+
+.container {
+  width: 300px;
+  padding: 16px;
+  background-color: white;
+  margin-top: 100px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+h2 {
+  color: #c3d1c4; /* Change the color of the heading */
+  letter-spacing: 2px; /* Increase the spacing between letters */
+}
+
+#calendar {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.tab {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 0 10px;
+  border: none;
+  cursor: pointer;
+  width: 45%;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold; /* Make the tab labels bold */
+}
+
+.tab:hover {
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<h2><a href="{{ url_for('login') }}" style="color: white;">iFireTracker</a></h2>
+
+
+<div class="container">
+  
+  <label for="calendar"><b>Select a Date:</b></label>
+  <input type="date" id="calendar">
+
+  <div class="tabs">
+    <a href="{{ url_for('map') }}" class="tab">Map</a>
+    <a href="{{ url_for('csv') }}" class="tab">Table</a>
+  </div>
+
+</div>
+
+<script>
+// Get today's date
+var today = new Date();
+
+// Format today's date
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + '-' + mm + '-' + dd;
+
+// Set the default date of the calendar to today's date
+document.getElementById("calendar").defaultValue = today;
+</script>
+
+</body>
+</html>

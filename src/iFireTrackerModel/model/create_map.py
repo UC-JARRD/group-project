@@ -1,13 +1,17 @@
+import time
 import logging
 import folium
 from folium.plugins import Geocoder
 from datetime import datetime, timedelta
 from shapely.wkt import loads
 
+LOG_PATH = './logs/main_execution.log'
+OUTPUT_HTML_MAP_PATH = './data/output/html/fire_risk_map.html'
+
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('./logs/main_execution.log')
+handler = logging.FileHandler(LOG_PATH)
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 
@@ -49,11 +53,9 @@ def create_map(fire_risk_per_land_use_area):
     tomorrow_date = today_date + timedelta(days=1)
     five_days_date = today_date + timedelta(days=5)
 
-    all_layers = folium.FeatureGroup()
-
     fire_risk_today_layer = folium.FeatureGroup(name=f'Fire Risk for {today_date}', overlay=True, control=True, show=True)
-    # fire_risk_tomorrow_layer = folium.FeatureGroup(name=f'Fire Risk for {tomorrow_date}', overlay=True, control=True, show=False)
-    # fire_risk_five_days_layer = folium.FeatureGroup(name=f'Fire Risk for {five_days_date}', overlay=True, control=True, show=False)
+    fire_risk_tomorrow_layer = folium.FeatureGroup(name=f'Fire Risk for {tomorrow_date}', overlay=True, control=True, show=False)
+    fire_risk_five_days_layer = folium.FeatureGroup(name=f'Fire Risk for {five_days_date}', overlay=True, control=True, show=False)
 
     fire_risk_per_land_use_area['geometry'] = fire_risk_per_land_use_area['merged_geometry'].apply(loads)
 
@@ -66,13 +68,13 @@ def create_map(fire_risk_per_land_use_area):
         tooltip_text_today = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_today}<br>Closest Station: {closest_station}"
         add_geojson_layer(fire_risk_today_layer, row['fire_risk_today'], tooltip_text_today, geometry, row['fire_risk_today'])
 
-        # risk_word_tomorrow = RISK_WORDS.get(row['fire_risk_tomorrow'], 'Unknown')
-        # tooltip_text_tomorrow = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_tomorrow}<br>Closest Station: {closest_station}"
-        # add_geojson_layer(fire_risk_tomorrow_layer, row['fire_risk_tomorrow'], tooltip_text_tomorrow, geometry, row['fire_risk_tomorrow'])
+        risk_word_tomorrow = RISK_WORDS.get(row['fire_risk_tomorrow'], 'Unknown')
+        tooltip_text_tomorrow = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_tomorrow}<br>Closest Station: {closest_station}"
+        add_geojson_layer(fire_risk_tomorrow_layer, row['fire_risk_tomorrow'], tooltip_text_tomorrow, geometry, row['fire_risk_tomorrow'])
 
-        # risk_word_five_days = RISK_WORDS.get(row['fire_risk_five_days'], 'Unknown')
-        # tooltip_text_five_days = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_five_days}<br>Closest Station: {closest_station}"
-        # add_geojson_layer(fire_risk_five_days_layer, row['fire_risk_five_days'], tooltip_text_five_days, geometry, row['fire_risk_five_days'])
+        risk_word_five_days = RISK_WORDS.get(row['fire_risk_five_days'], 'Unknown')
+        tooltip_text_five_days = f"Land Category: {land_type.capitalize()}<br>Fire Risk: {risk_word_five_days}<br>Closest Station: {closest_station}"
+        add_geojson_layer(fire_risk_five_days_layer, row['fire_risk_five_days'], tooltip_text_five_days, geometry, row['fire_risk_five_days'])
 
     legend_html = '''
         <div style="position: fixed; bottom: 50px; left: 50px; width: 140px; height: 180px;
@@ -88,12 +90,13 @@ def create_map(fire_risk_per_land_use_area):
     fire_risk_map.get_root().html.add_child(folium.Element(legend_html))
 
     fire_risk_today_layer.add_to(fire_risk_map)
-    # fire_risk_tomorrow_layer.add_to(fire_risk_map)
-    # fire_risk_five_days_layer.add_to(fire_risk_map)
+    fire_risk_tomorrow_layer.add_to(fire_risk_map)
+    fire_risk_five_days_layer.add_to(fire_risk_map)
 
     folium.LayerControl(collapsed=False, position='bottomright').add_to(fire_risk_map)
     Geocoder().add_to(fire_risk_map)
 
     logging.info("[create_map.py] Saving fire risk map...")
-    fire_risk_map.save('./data/output/html/fire_risk_map.html')
+    fire_risk_map.save(OUTPUT_HTML_MAP_PATH)
     logging.info("[create_map.py] Fire risk map saved successfully.")
+

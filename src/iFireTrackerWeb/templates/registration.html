@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("{{ url_for('static', filename='images/background.jpg') }}");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+h2 {
+  color: #ded7da; /* Change this to your desired color */
+}
+
+
+.container {
+  width: 300px;
+  padding: 16px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+input[type=text], input[type=password], select {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=email] {
+  width: 90%;
+  padding: 15px; /* Increase padding to make the box bigger */
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.6;
+}
+
+button:hover {
+  opacity:1;
+}
+</style>
+</head>
+<body>
+
+  <h2><a href="{{ url_for('login') }}" style="color: white;">iFireTracker</a></h2>
+
+<div class="container">
+
+  <form method="POST">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <!-- <label for="weather-stations"><b>Weather Station</b></label>
+    <select id="weather-stations" name="weather-stations" required>
+        <option value="">Select...</option>
+        <option value="Ward B (HV)">Ward B (HV)</option>
+        <option value="Upper Clarence (HV)">Upper Clarence (HV)</option>
+        <option value="Glenveigh Kaikoura (HV)">Glenveigh Kaikoura (HV)</option>
+        <option value="Kaikoura Aws (MS)">Kaikoura Aws (MS)</option>
+        <option value="Hanmer Forest (NW)">Hanmer Forest (NW)</option>
+        <option value="Hundalee (HV)">Hundalee (HV)</option>
+        <option value="Waiau School (NW)">Waiau School (NW)</option>
+        <option value="Island Hills (HV)">Island Hills (HV)</option>
+        <option value="Culverden Aws (MS)">Culverden Aws (MS)</option>
+        <option value="Cheviot (NW)">Cheviot (NW)</option>
+        <option value="Medbury (NW)">Medbury (NW)</option>
+        <option value="Arthurs Pass Aws (MS)">Arthurs Pass Aws (MS)</option>
+        <option value="Omihi (HV)">Omihi (HV)</option>
+        <option value="Greta Valley (HV)">Greta Valley (HV)</option>
+        <option value="Cass (HV)">Cass (HV)</option>
+        <option value="Waipara West (NW)">Waipara West (NW)</option>
+        <option value="Lees Valley (HV)">Lees Valley (HV)</option>
+        <option value="Ashley (HV)">Ashley (HV)</option>
+        <option value="Salt Water Creek (HV)">Salt Water Creek (HV)</option>
+        <option value="Oxford 2 (HV)">Oxford 2 (HV)</option>
+        <option value="Cust (HV)">Cust (HV)</option>
+        <option value="Glenaan Station B (HV)">Glenaan Station B (HV)</option>
+        <option value="Rangiora (NW)">Rangiora (NW)</option>
+        <option value="Bottle Lake Forest (HV)">Bottle Lake Forest (HV)</option>
+        <option value="Whitectiffs (HV)">Whitectiffs (HV)</option>
+        <option value="Forest Plains (HV)">Forest Plains (HV)</option>
+        <option value="West Melton (HV)">West Melton (HV)</option>
+        <option value="Christchurch Awis (MS)">Christchurch Awis (MS)</option>
+        <option value="Godley Head (HV)">Godley Head (HV)</option>
+        <option value="Burnham (HV)">Burnham (HV)</option>
+        <option value="Early Valley (HV)">Early Valley (HV)</option>
+        <option value="Lincoln (NW)">Lincoln (NW)</option>
+        <option value="Diamond Harbour Ews (NW)">Diamond Harbour Ews (NW)</option>
+        <option value="Te Pirta (HV)">Te Pirta (HV)</option>
+        <option value="Motukarara (HV)">Motukarara (HV)</option>
+        <option value="Panama Road (HV)">Panama Road (HV)</option>
+        <option value="Leeston (HV)">Leeston (HV)</option>
+        <option value="Te Oka (HV)">Te Oka (HV)</option>
+        <option value="Southbridge (HV)">Southbridge (HV)</option>
+      
+    </select> -->
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -2,18 +2,22 @@ from shapely.geometry import MultiPolygon, Polygon
 from shapely.ops import unary_union  
 import geopandas as gpd
 import pandas as pd
-from shapely.geometry import Point
+from shapely.geometry import Point, box, JOIN_STYLE
+
+INPUT_WEATHER_STATIONS_PATH = './data/input/canterbury_weather_stations.csv'
+INPUT_LAND_USE_MAP_PATH = './data/input/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx'
+MERGED_LAND_USE_STATIONS_PATH = './data/input/merged/land_use_areas_per_station.csv'
 
 def generate_land_use_areas_per_station():
 
     # Load station location data
-    weather_stations = pd.read_csv('./data/input/canterbury_weather_stations.csv') # coordinates of each station
+    weather_stations = pd.read_csv(INPUT_WEATHER_STATIONS_PATH) # coordinates of each station
     # Convert weather station coordinates to GeoDataFrame
     geometry = [Point(xy) for xy in zip(weather_stations['longitude'], weather_stations['latitude'])]
     weather_stations = gpd.GeoDataFrame(weather_stations, geometry=geometry)
 
     # Load LUCAS NZ land use map data (shapefile)
-    land_use_data = gpd.read_file('./data/input/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx') # Can reduce row numbers using e.g. rows=1000
+    land_use_data = gpd.read_file(INPUT_LAND_USE_MAP_PATH) # Can reduce row numbers using e.g. rows=1000
     # Set the coordinate system
     land_use_data = land_use_data.to_crs("EPSG:4326")
     # Drop unnecessary columns
@@ -50,16 +54,18 @@ def generate_land_use_areas_per_station():
         if len(polygons) == 1:
             return polygons[0]
         else:
-            return unary_union(polygons)
-
+            merged = unary_union(polygons)
+            # Simplify the geometry to reduce the number of vertices
+            return merged.simplify(tolerance=0.0005, preserve_topology=True)
+        
     # Apply the function to each group and create a new DataFrame with the results
     merged_geometries = grouped.apply(merge_geometries).reset_index(name='merged_geometry')
 
     # Get the name of the closest station for each polygon
     merged_geometries['closest_station_name'] = land_use_data['closest_station'].apply(lambda x: weather_stations.loc[x, 'station_name'])
 
-    merged_geometries.to_csv('./data/input/merged/land_use_areas_per_station.csv', index=False)
-    print('Data saved to "./data/input/merged/land_use_areas_per_station.csv" successfully.')
+    merged_geometries.to_csv(MERGED_LAND_USE_STATIONS_PATH, index=False)
+    print('Land use data merged with Stations saved successfully.')
 
     return merged_geometries
 

@@ -3,10 +3,12 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 
+LOG_PATH = './logs/main_execution.log'
+
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('./logs/main_execution.log')
+handler = logging.FileHandler(LOG_PATH)
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
 
