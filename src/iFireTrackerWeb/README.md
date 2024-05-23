@@ -153,4 +153,4 @@ Now the web application will be available at the EC2 public IP address from the 
 
 ## Conclusion
 
-This Web server  is one of the part of our group prototype at the DATA472 course. Another parts of full Fire Prediction Project include Model Server, Authorization server, S3 file storage and MySQL database on AWS RDS. The whole Fire Prediction project was developed from scratch (from idea to implementation) within course weeks. If you have any questions, please feel free to ask us.
+This Web server is one of the part of our group prototype at the DATA472 course. Another parts of full Fire Prediction Project include Model Server, Authorization server, S3 file storage and MySQL database on AWS RDS. The whole Fire Prediction project was developed from scratch (from idea to implementation) within course weeks. If you have any questions, please feel free to ask us.
