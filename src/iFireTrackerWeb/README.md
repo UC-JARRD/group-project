@@ -148,7 +148,7 @@ sudo systemctl restart nginx
 
 ![Nginx and Flask status](./images_for_readme/nginx_flask_status.png)
 
-Now the game will be available at the EC2 public IP address from the browser. `http://<EC2-PUBLIC-IP-ADDRESS>`
+Now the web application will be available at the EC2 public IP address from the browser. `http://<EC2-PUBLIC-IP-ADDRESS>`
 
 
 ## Conclusion
