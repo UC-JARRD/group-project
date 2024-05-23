@@ -9,8 +9,8 @@ ${{\color{red}\large{\textsf{Do it using your GitHub credentials. Do it once (fi
 Additionally, please create token (classic) on GitHub user settings -> Developer Settings -> Personal access tokens -> Token (classic) 
 
 ```
-git config --global user.name "romanaumov"
-git config --global user.email "rna104@uclive.ac.nz"
+git config --global user.name "<username>"
+git config --global user.email "<email>"
 ```
 
 ## **2. Initialize the local folder. Do it once (first time)** 
