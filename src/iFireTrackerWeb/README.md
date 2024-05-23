@@ -10,10 +10,12 @@ The overall architecture of our system you can see in the presentation ("Present
 ## The pipeline how to deploy web server environment and web application into Amazon Cloud (AWS) is below
 
 
-### 1. Clone this repository into `PATH-YOUR-LOCAL-DIRECTORY` on local computer
+### 1. Clone this repository into your folder on local machine
 
+```
+cd PATH-YOUR-LOCAL-DIRECTORY
 git clone https://github.com/UC-JARRD/iFireTracker.git
-
+```
 
 ### 2. Create a AWS EC2 for WebServer instance
 
@@ -28,7 +30,7 @@ Additionally, basic information how to create and tune your EC2 instance you can
 
 ![AWS connection](./images_for_readme/aws-conn.png)
 
-2. Copy the folder from `PATH-YOUR-LOCAL-DIRECTORY` to EC2 home directory running the command below on your local machine in terminal
+1. Copy the local folder on your machine to EC2 home directory running the command below on your local machine in terminal
 
 ```
 cd <PATH-YOUR-LOCAL-DIRECTORY>iFireTracker
@@ -56,30 +58,30 @@ pip install requirements.txt
 
 4. Finally, your app folder should be like the following:
 
-iFireTrackerWeb
-├────────── data
-│             ├── csv
+```
+iFireTrackerWeb/
+├────────── data/
+│             ├── csv/
 │             │    └── fire_risk_per_land_use_area.csv
-│             └── html
+│             └── html/
 │                  └── fire_risk_map.html
 ├────────── flaskapp.service
 ├────────── get_files_from_s3.py
 ├────────── requirements.txt
-├────────── static
-│             └── images
+├────────── static/
+│             └── images/
 │                  └── background.jpg
-├────────── templates
+├────────── templates/
 │             ├── csv.html
 │             ├── login.html
 │             ├── main.html
-│             ├── original
 │             ├── registration.html
-│             └── test
-├────────── venv
-│             ├── bin
-│             ├── lib
+├────────── venv/
+│             ├── bin/
+│             ├── lib/
 │             └── pyvenv.cfg
 └────────── web_server.py
+```
 
 
 ### 5. Setup Gunicorn environment on EC2
