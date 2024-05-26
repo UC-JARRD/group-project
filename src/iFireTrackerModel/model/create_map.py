@@ -5,7 +5,7 @@ from folium.plugins import Geocoder
 from datetime import datetime, timedelta
 from shapely.wkt import loads
 
-LOG_PATH = './logs/main_execution.log'
+LOG_PATH = '../logs/model_execution.log'
 OUTPUT_HTML_MAP_PATH = './data/output/html/fire_risk_map.html'
 
 # Configure logging

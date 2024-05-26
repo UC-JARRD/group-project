@@ -1,4 +1,8 @@
 import requests
+import datetime
+
+# Get today's date
+time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # Set the API endpoint URL
 url = 'http://54.66.144.170/upload?format=html'
@@ -17,6 +21,6 @@ with open(html_path, 'rb') as html_file:
 
     # Check the response status code
     if response.status_code == 200:
-        print('HTML file uploaded successfully')
+        print(f'{time} HTML file uploaded successfully')
     else:
-        print(f'HTML file upload failed with status code {response.status_code}')
+        print(f'{time} HTML file upload failed with status code {response.status_code}')

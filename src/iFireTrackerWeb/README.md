@@ -151,6 +151,29 @@ sudo systemctl restart nginx
 Now the web application will be available at the EC2 public IP address from the browser. `http://<EC2-PUBLIC-IP-ADDRESS>`
 
 
+### 7. Schedule tasks using Cron on EC2
+
+To periodically update prediction files, they need to be obtained from the S3 File server. For this, Cron is used with a schedule for collecting files every hour.
+
+1. Grant file execution rights to copy prediction files from the S3 File server.
+
+`chmod +x get_s3.sh`
+
+2. Using the command `crontab -e` add the following entry to run the script every hour
+
+`0 */1 * * * /home/ubuntu/iFireTrackerWeb/get_s3.sh`
+
+3. Check if the entry was successfully added to the Cron table, run the command `crontab -l`
+
+4. Restart Cron and check the status
+
+```bash
+sudo systemctl stop cron
+sudo systemctl start cron
+sudo systemctl enable cron
+sudo systemctl status cron
+```
+
 ## Conclusion
 
 This Web server is one of the part of our group prototype at the DATA472 course. Another parts of full Fire Prediction Project include Model Server, Authorization server, S3 file storage and MySQL database on AWS RDS. The whole Fire Prediction project was developed from scratch (from idea to implementation) within course weeks. If you have any questions, please feel free to ask us.
