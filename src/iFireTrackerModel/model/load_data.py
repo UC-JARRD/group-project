@@ -3,10 +3,10 @@ import pandas as pd
 import datetime
 import os
 
-LOG_PATH = './logs/main_execution.log'
+LOG_PATH = '../logs/model_execution.log'
 INPUT_WEATHER_STATIONS_PATH = './data/input/canterbury_weather_stations.csv'
 MERGED_LAND_USE_STATIONS_PATH = './data/input/merged/land_use_areas_per_station.csv'
-INPUT_FIRE_RISK_PATH_PREFIX = './data/input/'
+INPUT_FIRE_RISK_PATH_PREFIX = './data/input/everyday_data/'
 
 # Configure logging
 logger = logging.getLogger(__name__)

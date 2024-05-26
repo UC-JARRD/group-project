@@ -2,12 +2,8 @@ import mysql.connector
 import datetime
 import csv
 
-# Connect to Roman individual MySQL database
-# db_config = {
-#     'user': 'admin',
-#     'password': 'yeaWYdvmiGhJpjmFh0d4',
-#     'host': 'data472-rna104-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com',
-# }
+# Get today's date
+time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # Connect to JARRD group MySQL database
 db_config = {
@@ -49,7 +45,8 @@ reader = csv.reader(csv_file)
 # Skip the header row
 next(reader)  
 
-print('The process of filling out the fire_predictions table is in progress...')
+print(f'{time} The process of filling out the fire_predictions table is in progress...')
+
 i = 0
 for row in reader:
     # Extract only the columns we want to insert
@@ -62,7 +59,7 @@ for row in reader:
     polygon_wkt = row[0]
 
     i += 1
-    print(f"row : {i}")
+    # print(f"row : {i}")
     # Insert the data into the MySQL table
     cursor.execute('''
                    INSERT INTO fire_predictions
@@ -73,7 +70,7 @@ for row in reader:
 
 # # Commit the changes and close the connections
 db_connection.commit()
-print('The data was inserted into fire_predictions table')
+print(f'{time} The data was inserted into fire_predictions table')
 
 
 # Open the file in binary mode and read the data
@@ -83,7 +80,7 @@ print('The data was inserted into fire_predictions table')
 # with open(html_file_path, 'rb') as html_file:
 #     html_file_data = html_file.read()
 
-print('The process of filling out the fire_predictions_files table is in progress...')
+print(f'{time} The process of filling out the fire_predictions_files table is in progress...')
 
 # Insert the file into the large_files table
 cursor.execute("INSERT INTO fire_predictions_files (date, html_file_name, csv_file_name) VALUES (%s, %s, %s)",
@@ -91,7 +88,7 @@ cursor.execute("INSERT INTO fire_predictions_files (date, html_file_name, csv_fi
 
 # Commit the changes and close the connections
 db_connection.commit()
-print('The data was inserted into fire_predictions_files table')
+print(f'{time} The data was inserted into fire_predictions_files table')
 
 # Close the database connection
 cursor.close()

@@ -3,7 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 
-LOG_PATH = './logs/main_execution.log'
+LOG_PATH = '../logs/model_execution.log'
 
 # Configure logging
 logger = logging.getLogger(__name__)

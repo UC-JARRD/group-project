@@ -86,14 +86,17 @@ This module generates a CSV file containing the land use areas grouped by the cl
 #### Functions
 
 - `generate_land_use_areas_per_station()`: Loads the weather station location data and the LUCAS NZ land use map data. Determines the land type for each polygon in the land use data and finds the closest weather station for each polygon. Groups the polygons by closest station and land type, merges the geometries in each group, and saves the resulting DataFrame to a CSV file (`land_use_areas_per_station.csv`).
+- 
 
 ### `main.py`
 
 This module orchestrates the execution of the other modules and handles logging.
 
+
 #### Functions
 
 - `main()`: Loads the data using `load_data.load_data()`, processes the data using `process_data.process_data()`, saves the processed data to a CSV file, and creates the map using `create_map.create_map()`.
+- 
 
 ## Usage
 
@@ -111,9 +114,34 @@ This will execute the application, generating a CSV file (`fire_risk_per_land_us
 
 Note: The application assumes that the required input files (`canterbury_weather_stations.csv`, `fire_risk.csv`, and `lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx`) are present in the `src/iFireTrackerModel/model/data/input/` directory.
 
+
 ## Logging
 
 The application uses the Python `logging` module to log important events, warnings, and errors during execution. The logs are written to the `main_execution.log` file located in the `src/iFireTrackerModel/model/logs/` directory.
+
+
+## Schedule tasks using Cron on EC2
+
+To periodically update prediction files, they need to be runned the model and sent to MySQL database, S3 file server and Web server. For this, Cron is used with a schedule to run script every hour.
+
+1. Grant file execution rights to script.
+
+`chmod +x get_s3.sh`
+
+2. Using the command `crontab -e` add the following entry to run the script every hour
+
+`0 */1 * * * /home/ubuntu/iFireTrackerModel/run_model.sh`
+
+3. Check if the entry was successfully added to the Cron table, run the command `crontab -l`
+
+4. Restart Cron and check the status
+
+```
+sudo systemctl stop cron
+sudo systemctl start cron
+sudo systemctl enable cron
+sudo systemctl status cron
+```
 
 ## Dependencies
 
