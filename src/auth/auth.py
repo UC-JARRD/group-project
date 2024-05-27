@@ -10,7 +10,7 @@ JWT_SECRET = "your_jwt_secret_key"
 JWT_ALGORITHM = "HS256"
 
 @app.route("/")
-def hello_world():
+def test():
     return "Test"
 
 @app.route("/register", methods=["POST"])
