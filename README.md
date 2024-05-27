@@ -39,7 +39,7 @@ All communication was via WhatsApp messenger in a group chat. Discussed all chan
 
 The entire Fire Prediction project was developed from scratch (from idea to implementation) within weeks of the DATA472 course and fully deployed on AWS. The system consists of many objects, such as the Web, Model and Authentication servers, Database and File storage:
 
-1. **Flask, Gunicorn and Nginx** were used for Web server. 
+1. **Flask, Gunicorn and Nginx** were used for Web server and Auth server. 
 2. **Boto3 and MySQL connector** libraries were used for Storages. 
 3. **Folium, Geopandas, Shapely** was used for map generating in Model server. 
 4. **Selenium** library was used for source websites scrapping. 
