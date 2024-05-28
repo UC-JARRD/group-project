@@ -1,29 +1,32 @@
 import mysql.connector
 import datetime
 import csv
+import sys
+import os
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
 # Get today's date
 time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-# Connect to JARRD group MySQL database
 db_config = {
-    'user': 'ucstudent',
-    'password': 'DATA472JARRDmads',
-    'host': 'data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com',
+    'user': config.db_user,
+    'password': config.db_user_password,
+    'host': config.db_host,
 }
 
 db_connection = mysql.connector.connect(**db_config)
 cursor = db_connection.cursor()
 
 # Create a new database
-db_config['database'] = 'jarrd_db'
+db_config['database'] = config.db_name
 db_connection = mysql.connector.connect(**db_config)
 cursor = db_connection.cursor()
 
-csv_file_name = 'fire_risk_per_polygon.csv'
-csv_file_path = f'../model/data/input/{csv_file_name}'
-html_file_name = 'fire_risk_map.html'
-html_file_path = f'../model/data/output/html/{html_file_name}'
+csv_file_path = config.csv_input_fire_risk
+html_file_path = config.html_output_local_path
+
 
 # Get the current date and time
 system_date = datetime.datetime.now()
@@ -47,7 +50,6 @@ next(reader)
 
 print(f'{time} The process of filling out the fire_predictions table is in progress...')
 
-i = 0
 for row in reader:
     # Extract only the columns we want to insert
     land_type = row[3]
@@ -58,8 +60,6 @@ for row in reader:
     fire_risk_five_days = row[8]
     polygon_wkt = row[0]
 
-    i += 1
-    # print(f"row : {i}")
     # Insert the data into the MySQL table
     cursor.execute('''
                    INSERT INTO fire_predictions
@@ -72,19 +72,11 @@ for row in reader:
 db_connection.commit()
 print(f'{time} The data was inserted into fire_predictions table')
 
-
-# Open the file in binary mode and read the data
-# with open(csv_file_path, 'rb') as csv_file:
-#     csv_file_data = csv_file.read()
-
-# with open(html_file_path, 'rb') as html_file:
-#     html_file_data = html_file.read()
-
 print(f'{time} The process of filling out the fire_predictions_files table is in progress...')
 
 # Insert the file into the large_files table
 cursor.execute("INSERT INTO fire_predictions_files (date, html_file_name, csv_file_name) VALUES (%s, %s, %s)",
-               (date, html_file_name, csv_file_name))
+               (date, html_file_path, csv_file_path))
 
 # Commit the changes and close the connections
 db_connection.commit()

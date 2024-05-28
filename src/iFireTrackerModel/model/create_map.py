@@ -4,9 +4,14 @@ import folium
 from folium.plugins import Geocoder
 from datetime import datetime, timedelta
 from shapely.wkt import loads
+import os
+import sys
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
-LOG_PATH = '../logs/model_execution.log'
-OUTPUT_HTML_MAP_PATH = './data/output/html/fire_risk_map.html'
+LOG_PATH = config.log_path
+OUTPUT_HTML_MAP_PATH = config.html_output_local_path
 
 # Configure logging
 logger = logging.getLogger(__name__)

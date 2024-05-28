@@ -2,6 +2,12 @@
 import boto3
 import pandas as pd
 import datetime
+import sys
+import os
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+print(config_path)
+sys.path.append(config_path)
+import config
 
 # Get today's date
 time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -9,10 +15,16 @@ time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 # Retrieve data from S3
 s3 = boto3.client('s3')
 
-bucket_name = 'data472-rna104-jarrd-hdd'
-csv_filename = 'ifiretracker_data/csv/fire_risk_per_land_use_area.csv'
-# Define the path to the local CSV file
-csv_path = '../model/data/output/csv/fire_risk_per_land_use_area.csv'
+bucket_name = config.s3_bucket_name
+
+# Define the path to CSV/HTML files on S3
+csv_filename = config.csv_s3_filename
+html_filename = config.html_s3_filename
+
+# Define the path to the local CSV/HTML files
+csv_path = config.csv_output_local_path
+html_path = config.html_output_local_path
+
 
 # Upload the CSV file to the S3 bucket
 s3.put_object(
@@ -22,10 +34,6 @@ s3.put_object(
 )
 print(f'{time} The CSV data was sent to S3 bucket successfully')
 
-
-html_filename = 'ifiretracker_data/html/fire_risk_map.html'
-# Define the path to the local HTML file
-html_path = '../model/data/output/html/fire_risk_map.html'
 
 # Upload the HTML file to the S3 bucket
 s3.put_object(

@@ -2,8 +2,13 @@ import logging
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
+import os
+import sys
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
-LOG_PATH = '../logs/model_execution.log'
+LOG_PATH = config.log_path
 
 # Configure logging
 logger = logging.getLogger(__name__)

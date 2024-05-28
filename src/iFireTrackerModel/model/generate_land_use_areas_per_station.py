@@ -3,10 +3,16 @@ from shapely.ops import unary_union
 import geopandas as gpd
 import pandas as pd
 from shapely.geometry import Point, box, JOIN_STYLE
+import os
+import sys
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
-INPUT_WEATHER_STATIONS_PATH = './data/input/canterbury_weather_stations.csv'
-INPUT_LAND_USE_MAP_PATH = './data/input/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx'
-MERGED_LAND_USE_STATIONS_PATH = './data/input/merged/land_use_areas_per_station.csv'
+
+INPUT_WEATHER_STATIONS_PATH = config.csv_input_weather_stations
+INPUT_LAND_USE_MAP_PATH = config.shx_input_land_use
+MERGED_LAND_USE_STATIONS_PATH = config.csv_input_merged_land_stations
 
 def generate_land_use_areas_per_station():
 

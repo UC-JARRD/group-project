@@ -3,9 +3,14 @@ import load_data
 import process_data
 import create_map
 import datetime
+import os
+import sys
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
-LOG_PATH = '../logs/model_execution.log'
-OUTPUT_FIRE_RISK_LAND_USE_PATH = './data/output/csv/fire_risk_per_land_use_area.csv'
+LOG_PATH = config.log_path
+OUTPUT_FIRE_RISK_LAND_USE_PATH = config.csv_output_local_path
 
 # Configure logging
 logging.basicConfig(filename=LOG_PATH, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

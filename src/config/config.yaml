@@ -1,0 +1,57 @@
+# This is a YAML config file for iFireTracker project
+
+# Environment variables
+
+# ${S3_BUCKET_NAME} = "data472-rna104-jarrd-hdd"
+
+# ${WEB_SERVER_URL} = "http://54.66.144.170"
+
+# ${DB_NAME} = jarrd_db
+# ${DB_USER} = ucstudent
+# ${DB_PASSWORD} = DATA472JARRDmads
+# ${DB_HOST} = data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com
+
+# ${DB_NAME} = <db_name>
+# ${DB_USER} = <db_user>
+# ${DB_PASSWORD} = <db_user_password>
+# ${DB_HOST} = <db_host>
+
+# ${MODEL_SERVER_PATH} = /home/ubuntu/iFireTrackerModel
+
+
+# S3_BUCKET_NAME = "data472-rna104-jarrd-hdd"
+# WEB_SERVER_URL = "http://54.66.144.170"
+# DB_NAME = "jarrd_db"
+# DB_USER = "ucstudent"
+# DB_PASSWORD = "DATA472JARRDmads"
+# DB_HOST = "data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com"
+# MODEL_SERVER_PATH = "/home/ubuntu/iFireTrackerModel"
+
+
+
+
+# Model server variables
+
+# Example of ${WEB_SERVER_URL} = "http://11.11.111.111"
+
+url:
+s3_bucket_name: "${S3_BUCKET_NAME}"
+web_server_url: "${WEB_SERVER_URL}"
+
+db:
+name: "${DB_NAME}"
+user: "${DB_USER}"
+password: "${DB_PASSWORD}"
+host: "${DB_HOST}"
+
+path:
+log: "${MODEL_SERVER_PATH}/logs/model_execution.log"
+csv_s3_filename: "ifiretracker_data/csv/fire_risk_per_land_use_area.csv"
+html_s3_filename: "ifiretracker_data/html/fire_risk_map.html"
+csv_output_local_path: "${MODEL_SERVER_PATH}/model/data/output/csv/fire_risk_per_land_use_area.csv"
+html_output_local_path: "${MODEL_SERVER_PATH}/model/data/output/html/fire_risk_map.html"
+csv_input_fire_risk: "${MODEL_SERVER_PATH}/model/data/input/fire_risk_per_polygon.csv"
+csv_input_weather_stations: "${MODEL_SERVER_PATH}/model/data/input/canterbury_weather_stations.csv"
+csv_input_merged_land_stations: "${MODEL_SERVER_PATH}/model/data/input/merged/land_use_areas_per_station.csv"
+input_fire_risk_prefix: "${MODEL_SERVER_PATH}/model/data/input/everyday_data/"
+shx_input_land_use: "${MODEL_SERVER_PATH}/model/data/input/lucas-nz-land-use-map-1990-2008-2012-2016-v011.shx"
