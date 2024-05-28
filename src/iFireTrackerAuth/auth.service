@@ -1,0 +1,11 @@
+[Unit]
+Description=Data472 group project flask app
+After=network.target
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/iFireTrackerAuth
+ExecStart=/home/ubuntu/iFireTrackerAuth/venv/bin/gunicorn -b 0.0.0.0:8000 auth:app
+Restart=always
+[Install]
+WantedBy=multi-user.target
