@@ -1,7 +1,7 @@
 # `Fire Predictions in Christchurch` Group Project for DATA472 course at the University of Canterbury
 
 
-## The pipeline how to deploy web server environment and web application into Amazon Cloud (AWS) is below
+## The deployment pipeline of auth server environment and authorization application into Amazon Cloud (AWS)
 
 
 ### 1. Clone this repository into your folder on local machine
@@ -11,7 +11,7 @@ cd PATH-YOUR-LOCAL-DIRECTORY
 git clone https://github.com/UC-JARRD/iFireTracker.git
 ```
 
-### 2. Create a AWS EC2 for WebServer instance
+### 2. Create a AWS EC2 for AuthServer instance
 
 Follow the instructions from Paul Benden, access on LEARN (University of Canterbury internal page, only for students) in the AWS Resources chapter of this course.   
 
@@ -66,7 +66,7 @@ iFireTrackerAuth/
 
 ### 5. Setup Gunicorn environment on EC2
 
-1. Copy a `auth.service` file from `iFireTrackerWeb` to the `/etc/systemd/system/` folder using the command 
+1. Copy a `auth.service` file from `iFireTrackerAuth` to the `/etc/systemd/system/` folder using the command 
 
 ```bash
 sudo mv auth.service /etc/systemd/system/
