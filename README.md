@@ -42,6 +42,6 @@ The entire Fire Prediction project was developed from scratch (from idea to impl
 1. **Flask, Gunicorn and Nginx** were used for Web server and Auth server. 
 2. **Boto3 and MySQL connector** libraries were used for Storages. 
 3. **Folium, Geopandas, Shapely** was used for map generating in Model server. 
-4. **Selenium** library was used for source websites scrapping. 
+4. **Selenium and BeautifulSoup** libraries was used for source websites scrapping. 
 
 If you have any questions, please feel free to ask us.
