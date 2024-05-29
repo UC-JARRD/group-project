@@ -1,0 +1,9 @@
+# This is a YAML config file for iFireTracker project
+
+# Auth server variables
+
+db_name: "jarrd_db"
+db_user: "ucstudent"
+db_password: "DATA472JARRDmads"
+db_host: "data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com"
+secret_key: "DATA472-JARRD-ifiretracker"

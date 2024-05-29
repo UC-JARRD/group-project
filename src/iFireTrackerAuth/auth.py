@@ -3,18 +3,29 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
 import datetime
 # , timezone, timedelta
-import os
+# import os
+import sys
 
 # Get today's date
 time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-db_name = os.path.expandvars('$DB_NAME')
-db_user = os.path.expandvars('$DB_USER')
-db_user_password = os.path.expandvars('$DB_PASSWORD')
-db_host = os.path.expandvars('$DB_HOST')
+config_path = '/home/ubuntu/iFireTrackerAuth/config/'
+sys.path.append(config_path)
+import config
+
+db_name = config.db_name
+db_user = config.db_user
+db_user_password = config.db_user_password
+db_host = config.db_host
+secret_key = config.secret_key
+
+# db_name = os.path.expandvars('$DB_NAME')
+# db_user = os.path.expandvars('$DB_USER')
+# db_user_password = os.path.expandvars('$DB_PASSWORD')
+# db_host = os.path.expandvars('$DB_HOST')
 
 app = Flask(__name__)
-app.secret_key = os.path.expandvars('$SECRET_KEY')
+app.secret_key = secret_key
 
 # app.secret_key = 'DATA472-JARRD-ifiretracker'
 # JWT_SECRET = "your_jwt_secret_key"
