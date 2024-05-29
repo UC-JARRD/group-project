@@ -1,6 +1,6 @@
 # Modelling Fire Risk - Research
 
-## Does it all?!
+## This website shows the fire risk in large areas of NZ
 https://fireweather.niwa.co.nz/indices - requires webscraping, but seemingly has all data required
 
 ## Models
