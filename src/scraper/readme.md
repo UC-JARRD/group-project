@@ -10,9 +10,8 @@ The scraper can be easily scaled up to the entire country by scraping each regio
 
 ### Dependencies
 
-    ```bash
     pip install selenium pandas BeautifulSoup
-    ```
+
 
 This runs using Firefox with geckodriver
 https://github.com/mozilla/geckodriver/releases
