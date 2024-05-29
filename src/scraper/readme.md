@@ -52,4 +52,5 @@ The scaper can be act differently depending on the system running them. It will 
     zip([-172 * 2, -172, 172 *3]). 
     
 Commenting out headless mode will help with debugging.
+
     options.add_argument('--headless')  
