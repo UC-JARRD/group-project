@@ -3,7 +3,7 @@
 # Web server variables
 url:
   s3_bucket_name: 'data472-rna104-jarrd-hdd'
-  auth_server_url: 'http://13.239.55.4:8000'
+  auth_server_url: 'http://13.239.55.4'
 
 path:
   csv_s3_filename: "ifiretracker_data/csv/fire_risk_per_land_use_area.csv"
