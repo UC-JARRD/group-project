@@ -1,14 +1,19 @@
 import requests
 import datetime
+import sys
+import os
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
 # Get today's date
 time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # Set the API endpoint URL
-url = 'http://54.66.144.170/upload?format=csv'
+url = f'{config.web_server_url}/upload?format=csv'
 
 # Set the path to the CSV file you want to send
-csv_path = '../../model/data/output/csv/fire_risk_per_land_use_area.csv'
+csv_path = config.csv_output_local_path
 
 # Open the CSV file in binary mode
 with open(csv_path, 'rb') as csv_file:

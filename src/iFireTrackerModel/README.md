@@ -120,9 +120,71 @@ Note: The application assumes that the required input files (`canterbury_weather
 The application uses the Python `logging` module to log important events, warnings, and errors during execution. The logs are written to the `main_execution.log` file located in the `src/iFireTrackerModel/model/logs/` directory.
 
 
-## Schedule tasks using Cron on EC2
+## Dependencies
 
-To periodically update prediction files, they need to be runned the model and sent to MySQL database, S3 file server and Web server. For this, Cron is used with a schedule to run script every hour.
+The iFireTracker Model application relies on the following Python libraries:
+
+- pandas
+- geopandas
+- folium
+- shapely
+
+Make sure to install these dependencies before running the application.
+
+
+## The pipeline how to deploy Model server into Amazon Cloud (AWS) is below
+
+
+### 1. Clone this repository into your folder on local machine
+
+```
+cd PATH-YOUR-LOCAL-DIRECTORY
+git clone https://github.com/UC-JARRD/iFireTracker.git
+```
+
+### 2. Create a AWS EC2 for Model Server instance
+
+Follow the instructions from Paul Benden, access on LEARN (University of Canterbury internal page, only for students) in the AWS Resources chapter of this course.   
+
+Additionally, basic information how to create and tune your EC2 instance you can find on the official AWS website here: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
+
+
+### 3. AWS setup on EC2 (WebServer)
+
+1. To work with EC2 instance you should connect to this virtual environment. You can do it using `ssh` or just use AWS web interface to click the `Connect` button on the top right corner of EC2 instance page and select the tab `EC2 Instance Connect` by default, you will be able to connect to the instance without any further setup.
+
+![AWS connection](./images_for_readme/aws-conn.png)
+
+2. Copy the local folder on your machine to EC2 home directory running the command below on your local machine in terminal
+
+```
+cd <PATH-YOUR-LOCAL-DIRECTORY>iFireTracker
+scp -i <PATH-TO-YOUR-PEM-KEY-ON-LOCAL-MACHINE> -r iFireTrackerModel ubuntu@<EC2-PUBLIC-IP-ADDRESS>:/home/ubuntu/
+```
+
+
+### 4. Setup environmental variables on Ubuntu EC2
+
+To hide sensitive information one of the best way is to use system environmental variables.
+
+1. Add environmental variables using the command  `sudo nano /etc/environment`.
+
+```bash
+S3_BUCKET_NAME="<your_s3_bucket_name>"
+WEB_SERVER_URL="<your_public_IP_web_server>"
+DB_NAME="<your_db_name>"
+DB_USER="<your_db_user>"
+DB_PASSWORD="<your_db_password>"
+DB_HOST="<your_db_host>"
+MODEL_SERVER_PATH="<your_path_to_model_server>"
+```
+
+2. Then  and save the file `/etc/environment` and restart Ubuntu OS. Activate global variables using the following command `source /etc/environment`.
+
+
+### 5. Schedule tasks using Cron on EC2
+
+To periodically update prediction files, they need to be run the model and sent to MySQL database, S3 file server and Web server. For this, Cron is used with a schedule to run script every hour.
 
 1. Grant file execution rights to script.
 
@@ -142,17 +204,6 @@ sudo systemctl start cron
 sudo systemctl enable cron
 sudo systemctl status cron
 ```
-
-## Dependencies
-
-The iFireTracker Model application relies on the following Python libraries:
-
-- pandas
-- geopandas
-- folium
-- shapely
-
-Make sure to install these dependencies before running the application.
 
 ## Future Improvements
 

@@ -30,7 +30,7 @@ Additionally, basic information how to create and tune your EC2 instance you can
 
 ![AWS connection](./images_for_readme/aws-conn.png)
 
-1. Copy the local folder on your machine to EC2 home directory running the command below on your local machine in terminal
+2. Copy the local folder on your machine to EC2 home directory running the command below on your local machine in terminal
 
 ```
 cd <PATH-YOUR-LOCAL-DIRECTORY>iFireTracker

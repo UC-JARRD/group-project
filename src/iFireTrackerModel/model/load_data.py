@@ -2,11 +2,15 @@ import logging
 import pandas as pd
 import datetime
 import os
+import sys
+config_path = f'{os.path.expandvars('$MODEL_SERVER_PATH')}/config/'
+sys.path.append(config_path)
+import config
 
-LOG_PATH = '../logs/model_execution.log'
-INPUT_WEATHER_STATIONS_PATH = './data/input/canterbury_weather_stations.csv'
-MERGED_LAND_USE_STATIONS_PATH = './data/input/merged/land_use_areas_per_station.csv'
-INPUT_FIRE_RISK_PATH_PREFIX = './data/input/everyday_data/'
+LOG_PATH = config.log_path
+INPUT_WEATHER_STATIONS_PATH = config.csv_input_weather_stations
+MERGED_LAND_USE_STATIONS_PATH = config.csv_input_merged_land_stations
+INPUT_FIRE_RISK_PATH_PREFIX = config.input_fire_risk_prefix
 
 # Configure logging
 logger = logging.getLogger(__name__)

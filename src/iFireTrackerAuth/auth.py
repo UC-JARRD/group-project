@@ -1,16 +1,35 @@
 from flask import Flask, jsonify, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
-import datetime, timezone, timedelta
+import datetime
+import sys
 
+# Get today's date
+time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+config_path = '/home/ubuntu/iFireTrackerAuth/config/'
+sys.path.append(config_path)
+import config
+
+db_name = config.db_name
+db_user = config.db_user
+db_user_password = config.db_user_password
+db_host = config.db_host
+secret_key = config.secret_key
+
+# db_name = os.path.expandvars('$DB_NAME')
+# db_user = os.path.expandvars('$DB_USER')
+# db_user_password = os.path.expandvars('$DB_PASSWORD')
+# db_host = os.path.expandvars('$DB_HOST')
 
 app = Flask(__name__)
-app.secret_key = 'DATA472-JARRD-ifiretracker'
-JWT_SECRET = "your_jwt_secret_key"
-JWT_ALGORITHM = "HS256"
+app.secret_key = secret_key
+
+# JWT_SECRET = "your_jwt_secret_key"
+# JWT_ALGORITHM = "HS256"
 
 @app.route("/")
-def test():
+def hello_world():
     return "Test"
 
 @app.route("/register", methods=["POST"])
@@ -32,13 +51,13 @@ def register():
         file.write(f"{login},{email},{hashed_password}\n")
 
     try:
-        # Configure database connection
         db_connection = mysql.connector.connect(
-            host="data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com",
-            user="ucstudent",
-            password="DATA472JARRDmads",
-            database="jarrd_db"
+            host=db_host,
+            user=db_user,
+            password=db_user_password,
+            database=db_name
         )
+        print(f'{time} The connection to DB was established.')
 
 # Create cursor
         cursor = db_connection.cursor()
@@ -58,10 +77,11 @@ def register():
         # Close cursor and database connection
         cursor.close()
         db_connection.close()
-
+        print(f'{time} User registered successfully!')
         return "User registered successfully!"
 
     except mysql.connector.Error as err:
+        print(f'{time} User registered unsuccessful, error was appeared!')
         return f"Error: {err}", 500
 
 
@@ -73,15 +93,15 @@ def login():
     password = data.get('password')
 
     if not login or not password:
+        print(f'{time} Missing login or password')
         return "Missing login or password", 400
 
     try:
-        # Configure database connection
         db_connection = mysql.connector.connect(
-            host="data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com",
-            user="ucstudent",
-            password="DATA472JARRDmads",
-            database="jarrd_db"
+            host=db_host,
+            user=db_user,
+            password=db_user_password,
+            database=db_name
         )
 
         # Create cursor
@@ -111,9 +131,11 @@ def login():
         if user and check_password_hash(user[1], password):
              # Set session
              session['user'] = login
+             print(f'{time} Login successful!')
              return "Login successful!"
         else:
-             return "Invalid login or password", 401
+            print(f'{time} Invalid login or password')
+            return "Invalid login or password", 401
 
     except mysql.connector.Error as err:
             return f"Error: {err}", 500
@@ -121,6 +143,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop('user', None)
+    print(f'{time} Logged out successfully!')
     return "Logged out successfully!"
 
 if __name__ == "__main__":
