@@ -2,8 +2,6 @@ from flask import Flask, jsonify, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
 import datetime
-# , timezone, timedelta
-# import os
 import sys
 
 # Get today's date
@@ -27,7 +25,6 @@ secret_key = config.secret_key
 app = Flask(__name__)
 app.secret_key = secret_key
 
-# app.secret_key = 'DATA472-JARRD-ifiretracker'
 # JWT_SECRET = "your_jwt_secret_key"
 # JWT_ALGORITHM = "HS256"
 
@@ -54,13 +51,6 @@ def register():
         file.write(f"{login},{email},{hashed_password}\n")
 
     try:
-        # Configure database connection
-        # db_connection = mysql.connector.connect(
-        #     host="data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com",
-        #     user="ucstudent",
-        #     password="DATA472JARRDmads",
-        #     database="jarrd_db"
-        # )
         db_connection = mysql.connector.connect(
             host=db_host,
             user=db_user,
@@ -107,13 +97,6 @@ def login():
         return "Missing login or password", 400
 
     try:
-        # Configure database connection
-        # db_connection = mysql.connector.connect(
-        #     host="data472-rna104-jarrd-db.cyi9p9kw8doa.ap-southeast-2.rds.amazonaws.com",
-        #     user="ucstudent",
-        #     password="DATA472JARRDmads",
-        #     database="jarrd_db"
-        # )
         db_connection = mysql.connector.connect(
             host=db_host,
             user=db_user,

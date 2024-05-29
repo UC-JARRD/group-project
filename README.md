@@ -22,7 +22,9 @@ The pipeline how to deploy overall system into Amazon Cloud (AWS) was described 
 
 **Web server:** [Web server](./src/iFireTrackerWeb/README.md)
 
-**Authorization server:** [Auth server](./src/auth/README.md)
+**Authorization server:** [Auth server](./src/iFireTrackerAuth/README.md)
+
+**Scraper:** [Scraper](./src/scraper/README.md)
 
 
 The overall architecture of our system you can see in the presentation ("Presentation" folder) and below as well

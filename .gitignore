@@ -5,3 +5,4 @@
 *.zip
 *.gz
 *.tfr
+config_with_data.yaml

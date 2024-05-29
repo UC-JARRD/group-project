@@ -9,8 +9,8 @@ import time
 from io import StringIO
 from bs4 import BeautifulSoup
 
-"""This code looks through the niwa website to find their fire risks
-for today, tomorrow and 5 days from now. These are saved as Firedata.csv."""
+"""This code looks through the niwa website to find the fire risks
+for today, tomorrow and 5 days from now. These are used the the model to predict fire risk."""
 
 # URL of the NIWA Canterbury fire weather page
 URL = 'https://fireweather.niwa.co.nz/region/Canterbury'
@@ -20,6 +20,7 @@ options = Options()
 options.add_argument('--headless')  # Run in headless mode
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--window-size=1920,1080')  # Set window size for headless mode
 
 # Define driver as Firefox webdriver
 driver = webdriver.Firefox(options=options)
@@ -29,6 +30,11 @@ driver.get(URL)
 
 # Allow some time for the page and JavaScript to fully load
 time.sleep(5)
+
+# Set the window size to ensure the target is within bounds
+driver.set_window_size(1920, 1080)
+
+print('starting scraping')
 
 # Function to scrape data for the current slider position
 def scrape_table():
@@ -76,6 +82,8 @@ for offset, suffix in zip([-172 * 2, -172, 172 *3], ['today', 'tomorrow', 'five_
     # Interact with the slider to set it to the desired day
     slider = driver.find_element(By.ID, 'niwa_slider')
     action = ActionChains(driver)
+    
+    driver.execute_script("arguments[0].scrollIntoView();", slider)
     
     #This needs to be adjusted to move the slider as desired.
     action.click_and_hold(slider).move_by_offset(offset, 0).release().perform()  # Adjust offset as necessary

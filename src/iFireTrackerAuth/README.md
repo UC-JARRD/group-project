@@ -29,8 +29,19 @@ cd <PATH-YOUR-LOCAL-DIRECTORY>iFireTracker
 scp -i <PATH-TO-YOUR-PEM-KEY-ON-LOCAL-MACHINE> -r iFireTrackerAuth ubuntu@<EC2-PUBLIC-IP-ADDRESS>:/home/ubuntu/
 ```
 
+### 4. AWS setup on EC2 (AuthServer)
 
-### 4. Setup Flask app environment on EC2 (AuthServer)
+1. Replace environmental variables for connection to database in the file `iFireTrackerAuth/config/config.yaml`
+
+```bash
+db_name: "<your_db_name>"
+db_user: "<your_db_user>"
+db_password: "<your_db_password>"
+db_host: "<your_db_host>"
+secret_key: "<your_secret_key>"
+```
+
+### 5. Setup Flask app environment on EC2 (AuthServer)
 
 1. Using bash on EC2 create the `venv` folder in the `iFireTrackerAuth` folder and activate this environment using the following commands:
 2. Enter to the folder `iFireTrackerAuth` using the command `cd iFireTrackerAuth`
@@ -64,7 +75,7 @@ iFireTrackerAuth/
 ```
 
 
-### 5. Setup Gunicorn environment on EC2
+### 6. Setup Gunicorn environment on EC2
 
 1. Copy a `auth.service` file from `iFireTrackerAuth` to the `/etc/systemd/system/` folder using the command 
 
@@ -81,7 +92,7 @@ sudo systemctl start auth
 sudo systemctl enable auth
 ```
 
-### 6. Setup Nginx environment on EC2 
+### 7. Setup Nginx environment on EC2 
 
 1. Install nginx by running the following command:
 
@@ -127,6 +138,13 @@ sudo systemctl restart nginx
 ```
 
 Now the web application will be available at the EC2 public IP address from the browser. `http://<EC2-PUBLIC-IP-ADDRESS>`
+
+
+### 8. Create JARRD MySQL DB on RDS
+
+1. Run the script `create_db.py` in the terminal for creating database and tables using the command `python3 create_db.py`.
+
+The following tables will be created `users`, `fire_predictions` and `fire_predictions_files` in the database `jarrd_db`.
 
 
 ## Conclusion
