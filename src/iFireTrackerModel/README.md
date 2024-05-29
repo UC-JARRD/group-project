@@ -96,7 +96,6 @@ This module orchestrates the execution of the other modules and handles logging.
 #### Functions
 
 - `main()`: Loads the data using `load_data.load_data()`, processes the data using `process_data.process_data()`, saves the processed data to a CSV file, and creates the map using `create_map.create_map()`.
-- 
 
 ## Usage
 
@@ -207,10 +206,11 @@ sudo systemctl status cron
 
 ## Future Improvements
 
-Here are some potential areas for future improvements:
+Future improvements could include:
 
 - Implement error handling, logging and data validation for input files.
-- Enhance the map visualization with additional features, such as interactive legends and filtering options.
+- Improve the map visualisation by improving UI and UX.
+- Improve map loading and generation speed.
 - Widen the area of map to all of Canterbury or New Zealand as a whole.
 - Implement automated testing for the different modules.
 - Explore parallelization or optimization techniques to improve performance for larger datasets.
