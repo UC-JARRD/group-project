@@ -32,7 +32,7 @@ The scraper can be easily scaled up to the entire country by scraping each regio
     python -m venv myenv
     source myenv/bin/activate
     ```
-3. **Install the above dependances.**:
+3. **Install the above dependances.**
 
 4. **Run a cron job each day**:
 
