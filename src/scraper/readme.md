@@ -14,10 +14,10 @@ The scraper can be easily scaled up to the entire country by scraping each regio
     pip install selenium pandas BeautifulSoup
     ```
 
-    This runs using Firefox with geckodriver
-    https://github.com/mozilla/geckodriver/releases
+This runs using Firefox with geckodriver
+https://github.com/mozilla/geckodriver/releases
 
-    Note chrome struggled to scrape Niwa's website.
+Note chrome struggled to scrape Niwa's website.
 
 ## Installation in a AWS EC2 instance
 
