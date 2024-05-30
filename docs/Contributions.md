@@ -18,7 +18,8 @@ Web-server application - ${{\color{green}\large{\textsf{(Anirudh)}}}}\$
 
 ## **Back-End**
 1. Authorization server - ${{\color{green}\large{\textsf{(Dimitrii)}}}}\$
-1. Database server and web scraping - ${{\color{green}\large{\textsf{(Ruben)}}}}\$
-1. Application Server
+2. Database server and web scraping - ${{\color{green}\large{\textsf{(Ruben)}}}}\$
+3. Application Server
    - Model - ${{\color{green}\large{\textsf{(Jess)}}}}\$
    - Architecture and implementation - ${{\color{green}\large{\textsf{(Roman)}}}}\$
+4. Web Server - ${{\color{green}\large{\textsf{(Roman)}}}}\$
